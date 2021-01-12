@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
+import General from "./pages/General.js";
 
 import "../utilities.css";
 
@@ -48,7 +49,7 @@ class App extends Component {
     return (
       <>
         <Router>
-          <Skeleton
+          <General
             path="/"
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
