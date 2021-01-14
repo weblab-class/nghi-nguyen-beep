@@ -3,9 +3,10 @@ import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
 import General from "./pages/General.js";
-
+import About from "./pages/About.js";
+import NavBar from "../components/modules/NavBar.js";
 import "../utilities.css";
-
+import Profile from "./pages/Profile.js";
 import { socket } from "../client-socket.js";
 
 import { get, post } from "../utilities";
@@ -18,7 +19,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: undefined,
+      userId: null,
     };
   }
 
@@ -41,20 +42,22 @@ class App extends Component {
   };
 
   handleLogout = () => {
-    this.setState({ userId: undefined });
+    this.setState({ userId: null });
     post("/api/logout");
   };
 
   render() {
     return (
       <>
+      <NavBar
+        handleLogin={this.handleLogin}
+        handleLogout={this.handleLogout}
+        userId={this.state.userId}
+      />
         <Router>
-          <General
-            path="/"
-            handleLogin={this.handleLogin}
-            handleLogout={this.handleLogout}
-            userId={this.state.userId}
-          />
+          <General path="/"/>
+          <About path="/about"/>
+          <Profile path="/profile/:userId" />
           <NotFound default />
         </Router>
       </>

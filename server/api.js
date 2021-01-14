@@ -26,10 +26,16 @@ router.post("/logout", auth.logout);
 router.get("/whoami", (req, res) => {
   if (!req.user) {
     // not logged in
-    return res.send({});
+    res.send({});
   }
 
   res.send(req.user);
+});
+
+router.get("/user", (req, res) => {
+  User.findById(req.query.userid).then((user) => {
+    res.send(user);
+  });
 });
 
 router.post("/initsocket", (req, res) => {
