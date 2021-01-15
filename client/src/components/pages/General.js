@@ -13,13 +13,14 @@ class General extends Component {
 
 
 componentDidMount() {
-    document.title = "General";
+    document.title = "weatherly";
 }
 
 render() {
     return (
         <>
         <div className = "pageContainer">
+          {this.props.userId} 
             <h1>hi everyone</h1>
         </div>
         </>
