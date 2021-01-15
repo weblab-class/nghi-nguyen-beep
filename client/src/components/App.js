@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Router, Redirect } from "@reach/router";
+import { Router, Redirect, redirectTo } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
 import General from "./pages/General.js";
@@ -22,6 +22,8 @@ class App extends Component {
     this.state = {
       userId: null,
       isLoggedOut: null,
+      userName: null,
+
     };
   }
 
@@ -38,14 +40,14 @@ class App extends Component {
     console.log(`Logged in as ${res.profileObj.name}`);
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
-      this.setState({ userId: user._id });
+      this.setState({ userId: user._id, userName: res.profileObj.name });
       post("/api/initsocket", { socketid: socket.id });
     });
   };
 
   handleLogout = () => {
-    this.setState({ userId: null, isLoggedOut: true });
-    post("/api/logout");
+    this.setState({ userId: null, userName: null, isLoggedOut: true });
+    post("/api/logout").then(() => redirectTo("/"));
   };
 
   render() {
@@ -83,7 +85,7 @@ class App extends Component {
         <Router>
           <General path="/"/>
           <About path="/about"/>
-          <Profile path="/profile/:userId" />
+          <Profile path="/profile/:userId" userName= {this.state.userName}/>
           <SignedOut path="/goodbye" />
           <NotFound default />
         </Router>
