@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Router } from "@reach/router";
+import { Router, Redirect } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
 import General from "./pages/General.js";
@@ -7,8 +7,9 @@ import About from "./pages/About.js";
 import NavBar from "../components/modules/NavBar.js";
 import "../utilities.css";
 import Profile from "./pages/Profile.js";
+import SignedOut from "./pages/SignedOut";
 import { socket } from "../client-socket.js";
-
+import "./pages/App.css";
 import { get, post } from "../utilities";
 
 /**
@@ -20,6 +21,7 @@ class App extends Component {
     super(props);
     this.state = {
       userId: null,
+      isLoggedOut: null,
     };
   }
 
@@ -42,13 +44,37 @@ class App extends Component {
   };
 
   handleLogout = () => {
-    this.setState({ userId: null });
+    this.setState({ userId: null, isLoggedOut: true });
     post("/api/logout");
   };
 
   render() {
+    if (this.state.isLoggedOut) {
+      return (
+        <>
+        <NavBar
+          handleLogin={this.handleLogin}
+          handleLogout={this.handleLogout}
+          userId={this.state.userId}
+        />
+      
+        <Redirect to= "/"/>
+        {this.setState({isLoggedOut: null})}
+
+        <Router>
+          <General path="/"/>
+          <About path="/about"/>
+          <Profile path="/profile/:userId" />
+          <SignedOut path="/goodbye" />
+          <NotFound default />
+        </Router>
+        </>
+      );
+    }
+    
     return (
       <>
+      <div className="mainPage" >
       <NavBar
         handleLogin={this.handleLogin}
         handleLogout={this.handleLogout}
@@ -58,8 +84,10 @@ class App extends Component {
           <General path="/"/>
           <About path="/about"/>
           <Profile path="/profile/:userId" />
+          <SignedOut path="/goodbye" />
           <NotFound default />
         </Router>
+        </div>
       </>
     );
   }
