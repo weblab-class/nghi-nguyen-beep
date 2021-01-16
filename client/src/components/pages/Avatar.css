@@ -19,7 +19,7 @@
   width: auto; 
   max-width: 45vw; 
   max-height: 45vh;
-  transition: 0.4s;
+  transition: 0.2s;
   border-radius: 10%;
 }
 
@@ -28,7 +28,7 @@
   width: auto; 
   max-width: 45vw; 
   max-height: 45vh;
-  transition: 0.4s;
+  transition: 0.2s;
   border-radius: 10%;
 }
 
@@ -41,3 +41,47 @@
   background-color: #e9929e;
   color: white;
 }
+
+#bear:focus {
+  background-color: #3a663d;
+  color: white;
+}
+
+#cat:focus {
+  background-color: #ca7d87;
+  color: white;
+}
+
+.Profile-next {
+  display: flex;
+  max-width: 100vw;
+  max-height: 100vh;
+  flex-direction:row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: auto;
+  height: auto;
+  padding-top: 5%;
+}
+
+#next {
+  padding: 15px 50px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  transition: 0.2s;
+  /* box-shadow: 0 9px #999; */
+}
+
+#next:hover {background-color: #3e8e41}
+
+/* #next:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+} */

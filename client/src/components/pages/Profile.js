@@ -18,12 +18,13 @@ class Profile extends Component {
 
 
   render() {
+    console.log(this.props);
     if (!this.state.user) {
       return <div> Loading! </div>;
     }
     return (
       <>
-        <h1>profile</h1>
+        <h1>profile {this.props.userName}</h1>
       </>
     );
   }

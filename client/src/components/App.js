@@ -8,6 +8,8 @@ import NavBar from "../components/modules/NavBar.js";
 import "../utilities.css";
 import Profile from "./pages/Profile.js";
 import SignedOut from "./pages/SignedOut";
+import Survey from "./pages/Survey.js";
+import ChooseAvatar from "./pages/ChooseAvatar";
 import { socket } from "../client-socket.js";
 import "./pages/App.css";
 import { get, post } from "../utilities";
@@ -51,29 +53,6 @@ class App extends Component {
   };
 
   render() {
-    if (this.state.isLoggedOut) {
-      return (
-        <>
-        <NavBar
-          handleLogin={this.handleLogin}
-          handleLogout={this.handleLogout}
-          userId={this.state.userId}
-        />
-      
-        <Redirect to= "/"/>
-        {this.setState({isLoggedOut: null})}
-
-        <Router>
-          <General path="/"/>
-          <About path="/about"/>
-          <Profile path="/profile/:userId" />
-          <SignedOut path="/goodbye" />
-          <NotFound default />
-        </Router>
-        </>
-      );
-    }
-    
     return (
       <>
       <div className="mainPage" >
@@ -87,6 +66,8 @@ class App extends Component {
           <About path="/about"/>
           <Profile path="/profile/:userId" userName= {this.state.userName}/>
           <SignedOut path="/goodbye" />
+          <ChooseAvatar path="/bear" />
+          <Survey path="/survey"></Survey>
           <NotFound default />
         </Router>
         </div>
