@@ -67,7 +67,7 @@ class App extends Component {
           <Profile path="/profile/:userId" userName= {this.state.userName}/>
           <SignedOut path="/goodbye" />
           <ChooseAvatar path="/bear" />
-          <Survey path="/survey"></Survey>
+          <Survey path="/survey"/>
           <NotFound default />
         </Router>
         </div>

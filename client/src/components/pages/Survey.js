@@ -1,21 +1,16 @@
 import React, {Component} from "react";
 import "./css/Survey.css";
 import ClothesButton from "../modules/ClothesButton.js";
-
+import ClosetSubmitButton from "../modules/ClosetSubmitButton.js";
 class Survey extends Component {
     constructor(props) {
         super(props);
-        // this.topPressed = this.topPressed.bind();
-        // this.bottomPressed = this.bottomPressed.bind();
-        // this.shoesPressed = this.shoesPressed.bind();
-        // this.outerwearPressed = this.outerwearPressed.bind();
-        // this.accessoryPressed = this.accessoryPressed.bind();
         this.state = {
-            top: null, topSelected: null,
-            bottom: null, bottomSelected: null,
-            shoes: null, shoesSelected: null,
-            outerwear: null, outerwearSelected: null,
-            accesory: null, accessorySelected: null,
+          "top": [],
+          "bottom": [],
+          "shoes": [],
+          "outerwear": [],
+          "accessory": []
         };
     }
 
@@ -24,59 +19,114 @@ componentDidMount() {
     document.title = "Survey";
 }
 
+addItem = (obj) => {
+  // PLEASE REFACTOR THIS NASTY THING sdjkfsdkmlllz
+  console.log(obj, this.state);
+  
+  let item = obj.item;
 
-// topPressed = (item) => {
-//     this.setState({top: item, topSelected: "top"}, () => console.log(item));
-// }
+  if (obj.selected) {
+    if (item === "top") {
+      let arr = [...this.state.top];
+      if (!arr.includes(obj.specific)) {
+        arr.push(obj.specific);
+        this.setState({"top": arr});
+      }
+    }
 
+    else if (item === "bottom") {
+      let arr = [...this.state.bottom];
+      if (!arr.includes(obj.specific)) {
+        arr.push(obj.specific);
+        this.setState({"bottom": arr});
+      }
+    }
 
-// bottomPressed = (item) => {
-//     this.setState({bottom: item, bottomSelected: "bottom"}, () => console.log(item));
-// }
+    else if (item === "shoes") {
+      let arr = [...this.state.shoes];
+      if (!arr.includes(obj.specific)) {
+        arr.push(obj.specific);
+        this.setState({"shoes": arr});
+      }
+    }
 
+    else if (item === "outerwear") {
+      let arr = [...this.state.outerwear];
+      if (!arr.includes(obj.specific)) {
+        arr.push(obj.specific);
+        this.setState({"outerwear": arr});
+      }
+    }
 
-// shoesPressed = (item) => {
-//     this.setState({shoes: item, shoesSelected: "shoes"}, () => console.log(item));
-// }
+    else if (item === "accessory") {
+      let arr = [...this.state.accessory];
+      if (!arr.includes(obj.specific)) {
+        arr.push(obj.specific);
+        this.setState({"accessory": arr});
+      }
+    }
+  }
 
+  else {
+    if (item === "top") {
+      let newArr = this.state.top.filter(x => x !== obj.specific);
+      this.setState({"top": newArr});
+    }
 
-// outerwearPressed = (item) => {
-//     this.setState({outerwear: item, outerwearSelected: "outerwear"}, () => console.log(item));
-// }
+    else if (item === "bottom") {
+      let newArr = this.state.bottom.filter(x => x !== obj.specific);
+      this.setState({"bottom": newArr});
+    }
 
+    else if (item === "shoes") {
+      let newArr = this.state.shoes.filter(x => x !== obj.specific);
+      this.setState({"shoes": newArr});
+    }
 
-// accessoryPressed = (item) => {
-//     this.setState({accessory: item, accessorySelected: "accessory"}, () => console.log(item));
-// }
+    else if (item === "outerwear") {
+      let newArr = this.state.outerwear.filter(x => x !== obj.specific);
+      this.setState({"outerwear": newArr});
+    }
 
+    else if (item === "accessory") {
+      let newArr = this.state.accessory.filter(x => x !== obj.specific);
+      this.setState({"accessory": newArr});
+    }
+  } 
+
+} 
 
 render() {
-  
+
     return (
         <>
         <div className = "Survey-top">
-          <ClothesButton type = "top" clothing = "short sleeve" picture="shortSleeve.png"/>
-          <ClothesButton type= "top" clothing = "long sleeve" picture="longSleeve.png"/>
+          <ClothesButton type = "top" clothing = "Short Sleeve" picture="shortSleeve.png" onChange={this.addItem}/>
+          <ClothesButton type= "top" clothing = "Long Sleeve" picture="longSleeve.png" onChange={this.addItem}/>
         </div>
 
         <div className = "Survey-bottom">
-          <ClothesButton type="bottom" clothing="jeans" picture="jeans.png"/>
-          <ClothesButton type="bottom" clothing="shorts" picture="shorts.png"/>
+          <ClothesButton type="bottom" clothing="Jeans" picture="jeans.png"  onChange={this.addItem}/>
+          <ClothesButton type="bottom" clothing="Shorts" picture="shorts.png" onChange={this.addItem}/>
         </div>
 
         <div className = "Survey-shoes">
-          <ClothesButton type="shoes" clothing="rain boots" picture="rainBoots.png"/>
-          <ClothesButton type="shoes" clothing="sneakers" picture="sneakers.png"/>
+          <ClothesButton type="shoes" clothing="Rain Boots" picture="rainBoots.png" onChange={this.addItem}/>
+          <ClothesButton type="shoes" clothing="Sneakers" picture="sneakers.png" onChange={this.addItem}/>
         </div>
 
         <div className = "Survey-outerwear">
-          <ClothesButton type="outerwear" clothing="parka" picture="parka.png"/>
-          <ClothesButton type="outerwear" clothing="rain jacket" picture="rainJacket.png"/>
+          <ClothesButton type="outerwear" clothing="Parka" picture="parka.png" onChange={this.addItem}/>
+          <ClothesButton type="outerwear" clothing="Rain Jacket" picture="rainJacket.png" onChange={this.addItem}/>
         </div>
 
         <div className = "Survey-accessory">
-          <ClothesButton type="accessory" clothing="sunglasses" picture="sunglasses.png"/>
-          <ClothesButton type="accessory" clothing="umbrella" picture="umbrella.png"/>
+          <ClothesButton type="accessory" clothing="Sunglasses" picture="sunglasses.png" onChange={this.addItem}/>
+          <ClothesButton type="accessory" clothing="Umbrella" picture="umbrella.png" onChange={this.addItem}/>
+        </div>
+
+        <div className = "Survey-submit">
+            <ClosetSubmitButton closet= {this.state}/>
         </div>
         </>
     )
