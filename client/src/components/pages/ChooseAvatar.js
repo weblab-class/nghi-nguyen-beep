@@ -34,7 +34,7 @@ render() {
         
         
           <div className = "Profile-avatar">
-          <h2>{this.state.avatarSelected} selected<br></br></h2>
+          <h2>{this.state.avatarSelected} selected</h2>
           
              <input type="image" src={Cat} name="cat" id="cat" onClick={() => this.avatarPressed("cat")} />
              <input type="image" src={Bear} name="bear" id="bear" onClick={() => this.avatarPressed("bear")}/>
