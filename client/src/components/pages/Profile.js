@@ -20,10 +20,7 @@ class Profile extends Component {
 
 
   render() {
-    console.log(this.props);
-    if (!this.state.user) {
-      return <div> Loading! </div>;
-    }
+    console.log("profile", this.props);
     return (
       <>
         <div className = "pageContainer">

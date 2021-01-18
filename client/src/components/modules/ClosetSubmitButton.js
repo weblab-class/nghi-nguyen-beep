@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { get, post } from "../../utilities.js";
 import { socket } from "../../client-socket.js";
-import { Link, Router, Redirect, redirectTo } from "@reach/router";
+import { Link, Router, Redirect, redirectTo, navigate } from "@reach/router";
 
 class ClosetSubmitButton extends Component {
     constructor(props) {
@@ -16,8 +16,8 @@ componentDidMount() {
 
 
 saveCloset = (body) => {
-    post("/api/closet", body);
-    return  <Redirect to="/" />
+    post("/api/closet", body).then(navigate("/profile/"+String(this.props.userId)));
+
 
   };
 

@@ -126,7 +126,7 @@ render() {
         </div>
 
         <div className = "Survey-submit">
-            <ClosetSubmitButton closet= {this.state} userId = {this.props.userId}/>
+            <ClosetSubmitButton closet= {this.state} userId = {this.props.userId} onClick = {() => navigate("/profile" + JSON.stringify(this.props.userId))}/>
         </div>
         </>
     )
