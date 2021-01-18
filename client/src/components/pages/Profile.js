@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { get } from "../../utilities";
-
+import Bear from "../assets/images/avatars/Bear.png";
+import bearTwo from "../assets/images/logo.gif";
+import "../pages/css/Profile.css";
 import "../../utilities.css";
 // import "./Profile.css";
 
@@ -24,8 +26,11 @@ class Profile extends Component {
     }
     return (
       <>
-        <h1>profile {this.props.userName}</h1>
-      </>
+        <div className = "pageContainer">
+            <h2>Hi {this.props.userName}!</h2>
+            <img src={bearTwo} id= "Profile-bear"></img>
+        </div>
+        </>
     );
   }
 }

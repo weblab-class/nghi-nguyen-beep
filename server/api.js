@@ -29,6 +29,7 @@ router.post("/logout", auth.logout);
 router.get("/whoami", (req, res) => {
   if (!req.user) {
     // not logged in
+    console.log("res", req, res);
     res.send({});
   }
 
@@ -66,19 +67,6 @@ router.post("/closet", (req, res) => {
       }
     }
   ).then((user) => {res.send(user)});
-  // console.log(curUser);
-  
-  // const newCloset = new Closet(
-  //   {
-  //     tops: req.body.closet.top,
-  //     bottom: req.body.closet.bottom,
-  //     shoes: req.body.closet.shoes,
-  //     outerwear: req.body.closet.outerwear,
-  //     accessory: req.body.closet.accessory
-  //   }
-  // )
-
-  // User.findById(req.body.userId).then((user) => {res.send(user)})
 });
 
 

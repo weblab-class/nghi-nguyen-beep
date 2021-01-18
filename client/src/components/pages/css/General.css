@@ -1,0 +1,15 @@
+.pageContainer{
+    padding-top: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#General-bear-gif{
+    padding: 2%;
+    max-width: 40vw;
+    max-height: 40vh;
+    width: auto;
+    height: auto;
+}
+

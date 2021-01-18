@@ -3,6 +3,9 @@ import GoogleLogin, { GoogleLogout } from "react-google-login";
 import NavBar from "../modules/NavBar.js";
 import Bear from "../assets/images/logo.gif";
 import BearTwo from "../assets/images/logo2.gif";
+import BearThree from "../assets/images/logo3.gif";
+import BearFour from "../assets/images/logo4.gif";
+import BearFive from "../assets/images/logo5.gif";
 import "../pages/css/General.css";
 
 //TODO: REPLACE WITH YOUR OWN CLIENT_ID
@@ -23,7 +26,7 @@ render() {
     return (
         <>
         <div className = "pageContainer">
-            <img src={BearTwo} id= "General-bear-gif"></img>
+            <img src={BearFive} id= "General-bear-gif"></img>
         </div>
         </>
     )

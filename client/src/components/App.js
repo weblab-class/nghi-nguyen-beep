@@ -10,6 +10,7 @@ import Profile from "./pages/Profile.js";
 import SignedOut from "./pages/SignedOut";
 import Survey from "./pages/Survey.js";
 import ChooseAvatar from "./pages/ChooseAvatar";
+import MainUser from "./pages/MainUser.js";
 import { socket } from "../client-socket.js";
 import "./pages/App.css";
 import { get, post } from "../utilities";
@@ -25,6 +26,7 @@ class App extends Component {
       userId: null,
       isLoggedOut: null,
       userName: null,
+      newUser: null,
 
     };
   }
@@ -33,8 +35,9 @@ class App extends Component {
     get("/api/whoami").then((user) => {
       if (user._id) {
         // they are registed in the database, and currently logged in.
-        this.setState({ userId: user._id });
+        this.setState({ userId: user._id, newUser: false, userName: user.name });
       }
+    
     });
   }
 
@@ -42,7 +45,7 @@ class App extends Component {
     console.log(`Logged in as ${res.profileObj.name}`);
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
-      this.setState({ userId: user._id, userName: res.profileObj.name });
+      this.setState({ userId: user._id, userName: user.name});
       post("/api/initsocket", { socketid: socket.id });
     });
   };
@@ -60,14 +63,16 @@ class App extends Component {
         handleLogin={this.handleLogin}
         handleLogout={this.handleLogout}
         userId={this.state.userId}
+        userName={this.state.userName}
       />
         <Router>
           <General path="/"/>
           <About path="/about"/>
           <Profile path="/profile/:userId" userName= {this.state.userName}/>
           <SignedOut path="/goodbye" />
-          <ChooseAvatar path="/bear" />
-          <Survey path="/survey"/>
+          <ChooseAvatar path="/avatar" newUser = {this.state.newUser} userId = {this.state.userId}/>
+          <Survey path="/survey" newUser = {this.state.newUser} userId = {this.state.userId}/>
+          <MainUser path="/main" newUser = {this.state.newUser} userId = {this.state.userId} userName= {this.state.userName}/>
           <NotFound default />
         </Router>
         </div>
