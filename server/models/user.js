@@ -4,7 +4,13 @@ const UserSchema = new mongoose.Schema({
   name: String,
   googleid: String,
   avatar: String,
-  closet: Map,
+  closet: {
+    tops: Array,
+    bottoms: Array,
+    shoes: Array,
+    outerwear: Array,
+    accessories: Array,
+  },
 });
 
 // compile model from schema

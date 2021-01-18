@@ -21,6 +21,9 @@ const router = express.Router();
 //initialize socket
 const socketManager = require("./server-socket");
 
+const Closet = require("./models/closet");
+const { updateMany } = require("./models/user");
+
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
 router.get("/whoami", (req, res) => {
@@ -49,6 +52,37 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 
 // anything else falls to this "not found" case
+
+router.post("/closet", (req, res) => {
+  console.log("req", req.body);
+
+  User.findByIdAndUpdate(req.body.userId,
+    {closet: {
+      tops: req.body.closet.top,
+      bottoms: req.body.closet.bottom,
+      shoes: req.body.closet.shoes,
+      outerwear: req.body.closet.outerwear,
+      accessories: req.body.closet.accessory,
+      }
+    }
+  ).then((user) => {res.send(user)});
+  // console.log(curUser);
+  
+  // const newCloset = new Closet(
+  //   {
+  //     tops: req.body.closet.top,
+  //     bottom: req.body.closet.bottom,
+  //     shoes: req.body.closet.shoes,
+  //     outerwear: req.body.closet.outerwear,
+  //     accessory: req.body.closet.accessory
+  //   }
+  // )
+
+  // User.findById(req.body.userId).then((user) => {res.send(user)})
+});
+
+
+
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);
   res.status(404).send({ msg: "API route not found" });

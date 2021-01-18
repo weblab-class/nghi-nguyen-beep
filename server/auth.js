@@ -27,7 +27,13 @@ function getOrCreateUser(user) {
       name: user.name,
       googleid: user.sub,
       avatar: undefined,
-      closet: new Map(),
+      closet: {
+        tops: [],
+        bottoms: [],
+        shoes: [],
+        outerwear: [],
+        accessories: [],
+      },
     });
 
     return newUser.save();

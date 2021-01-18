@@ -126,7 +126,7 @@ render() {
         </div>
 
         <div className = "Survey-submit">
-            <ClosetSubmitButton closet= {this.state}/>
+            <ClosetSubmitButton closet= {this.state} userId = {this.props.userId}/>
         </div>
         </>
     )
