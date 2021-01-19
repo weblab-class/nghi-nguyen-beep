@@ -41,7 +41,7 @@ render() {
         <>
             <div className= "buttonLabel">
 
-            <input type= "checkbox" id = {"cb" + String(this.props.clothing)} name= "clothing" onClick= {() => this.handleChange(this.props.type, this.props.clothing)} value={this.props.clothing}/>
+            <input type= "checkbox" id = {"cb" + String(this.props.clothing)} onClick= {() => this.handleChange(this.props.type, this.props.name)}/>
             <label htmlFor= {"cb" + String(this.props.clothing)}>  {this.props.clothing}  </label>
             </div>
             {/* https://stackoverflow.com/questions/30663562/use-images-like-checkboxes/30663705 */}
