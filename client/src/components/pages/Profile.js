@@ -56,10 +56,10 @@ class Profile extends Component {
   getTemp = (obj) => {
     console.log(obj);
     if (obj.geolocationAllowed) {
-      this.setState({temp: obj.temp, city: obj.city, loading: false, geolocationAllowed: true}, console.log("getTemp", this.state));
+      this.setState({temp: obj.temp, city: obj.city, loading: false, geolocationAllowed: true});
     }
     else{
-      this.setState({geolocationAllowed: false}, console.log("getTemp", this.state));
+      this.setState({geolocationAllowed: false});
     }
   }
 
@@ -67,7 +67,6 @@ class Profile extends Component {
 
   render() {
     console.log("profile", this.props, this.state);
-    console.log("nav", navigator);
     if (this.state.geolocationAllowed){
       if (this.state.city) { 
         return (

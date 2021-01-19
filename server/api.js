@@ -29,7 +29,6 @@ router.post("/logout", auth.logout);
 router.get("/whoami", (req, res) => {
   if (!req.user) {
     // not logged in
-    console.log("res", req, res);
     res.send({});
   }
 
@@ -55,7 +54,6 @@ router.post("/initsocket", (req, res) => {
 // anything else falls to this "not found" case
 
 router.post("/closet", (req, res) => {
-  console.log("req", req.body);
 
   User.findByIdAndUpdate(req.body.userId,
     {closet: {
@@ -70,7 +68,6 @@ router.post("/closet", (req, res) => {
 });
 
 router.post("/avatar", (req, res) => {
-  console.log("req", req.body, req.body.avatar);
 
   User.findByIdAndUpdate(req.body.userId, 
     {avatar: req.body.avatar}

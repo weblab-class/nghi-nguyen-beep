@@ -65,7 +65,6 @@ getWeather = () => {
 
 
 render() {
-    console.log("weather", this.props)
     if (this.props.geolocationAllowed) {
         return (
         <>

@@ -27,7 +27,6 @@ componentDidMount() {
 }
 
 render() {
-    console.log("gen", this.props.userName)
     if (this.props.userName) {
         return (
             <>
