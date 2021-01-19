@@ -6,6 +6,7 @@ import BearTwo from "../assets/images/logo2.gif";
 import BearThree from "../assets/images/logo3.gif";
 import BearFour from "../assets/images/logo4.gif";
 import BearFive from "../assets/images/logo5.gif";
+import BearSix from "../assets/images/waving.gif";
 import "../pages/css/General.css";
 
 //TODO: REPLACE WITH YOUR OWN CLIENT_ID
@@ -27,17 +28,17 @@ render() {
     if (this.props.userName) {
         return (
             <>
-            <div className = "pageContainer">
+            <div className = "General-main">
                 <h2>Welcome Back</h2>
                 <h2> {this.props.userName}</h2>
-                <img src={BearFive} id= "General-bear-gif"></img>
+                <img src={BearSix} id= "General-bear-gif"></img>
             </div>
             </>
         )
     }
     return (
         <>
-        <div className = "pageContainer">
+        <div className = "General-main">
             <img src={BearFive} id= "General-bear-gif"></img>
         </div>
         </>
