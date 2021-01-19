@@ -70,9 +70,10 @@ router.post("/closet", (req, res) => {
 });
 
 router.post("/avatar", (req, res) => {
-  console.log("req", req.body);
+  console.log("req", req.body, req.body.avatar);
+
   User.findByIdAndUpdate(req.body.userId, 
-    {avatar: req.body.avatar}
+    {avatar: String(req.body.avatar.avatarSelected)}
     ).then((user) => {res.send(user)});
 });
 

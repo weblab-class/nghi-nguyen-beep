@@ -8,6 +8,7 @@ import BearFour from "../assets/images/logo4.gif";
 import BearFive from "../assets/images/logo5.gif";
 import BearSix from "../assets/images/waving.gif";
 import "../pages/css/General.css";
+import { navigate } from "@reach/router";
 
 //TODO: REPLACE WITH YOUR OWN CLIENT_ID
 const GOOGLE_CLIENT_ID = "157028916520-m6hggooip3h0h28bjr4itlv2rhdekkfe.apps.googleusercontent.com";
@@ -29,9 +30,10 @@ render() {
         return (
             <>
             <div className = "General-main">
-                <h2>Welcome Back</h2>
+                <h2>Welcome</h2>
                 <h2> {this.props.userName}</h2>
                 <img src={BearSix} id= "General-bear-gif"></img>
+                <button type="submit" onClick= {() => navigate("/avatar")}>Click here to get started!</button>
             </div>
             </>
         )

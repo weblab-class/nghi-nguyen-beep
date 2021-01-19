@@ -16,6 +16,7 @@ componentDidMount() {
 
 
 saveCloset = (body) => {
+    console.log("closet body", body, typeof(body));
     post("/api/closet", body).then(navigate("/profile/"+String(this.props.userId)));
 
 
@@ -26,7 +27,7 @@ render() {
    
         return (
         <>
-        <button type="submit" onClick= {() => this.saveCloset(this.props)} value={this.props.clothing} >Submit</button>
+        <button type="submit" onClick= {() => this.saveCloset(this.props)} value={this.props.clothing}> Submit </button>
         </>
         )
     }

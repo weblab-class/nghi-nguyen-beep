@@ -10,7 +10,8 @@ class Survey extends Component {
           "bottom": [],
           "shoes": [],
           "outerwear": [],
-          "accessory": []
+          "accessory": [],
+          itemSelected: null,
         };
     }
 
@@ -30,7 +31,7 @@ addItem = (obj) => {
       let arr = [...this.state.top];
       if (!arr.includes(obj.specific)) {
         arr.push(obj.specific);
-        this.setState({"top": arr});
+        this.setState({"top": arr, itemSelected: true});
       }
     }
 
@@ -38,7 +39,7 @@ addItem = (obj) => {
       let arr = [...this.state.bottom];
       if (!arr.includes(obj.specific)) {
         arr.push(obj.specific);
-        this.setState({"bottom": arr});
+        this.setState({"bottom": arr, itemSelected: true});
       }
     }
 
@@ -46,7 +47,7 @@ addItem = (obj) => {
       let arr = [...this.state.shoes];
       if (!arr.includes(obj.specific)) {
         arr.push(obj.specific);
-        this.setState({"shoes": arr});
+        this.setState({"shoes": arr, itemSelected: true});
       }
     }
 
@@ -54,7 +55,7 @@ addItem = (obj) => {
       let arr = [...this.state.outerwear];
       if (!arr.includes(obj.specific)) {
         arr.push(obj.specific);
-        this.setState({"outerwear": arr});
+        this.setState({"outerwear": arr, itemSelected: true});
       }
     }
 
@@ -62,7 +63,7 @@ addItem = (obj) => {
       let arr = [...this.state.accessory];
       if (!arr.includes(obj.specific)) {
         arr.push(obj.specific);
-        this.setState({"accessory": arr});
+        this.setState({"accessory": arr, itemSelected: true});
       }
     }
   }
@@ -100,33 +101,38 @@ render() {
 
     return (
         <>
-        <div className = "Survey-top">
-          <ClothesButton type = "top" clothing = "Short Sleeve" name = "ShortSleeve"  picture="shortSleeve.png" onChange={this.addItem}/>
-          <ClothesButton type= "top" clothing = "Long Sleeve" name = "LongSleeve" picture="longSleeve.png" onChange={this.addItem}/>
-        </div>
+        <div className="Survey-main">
+          <div className = "Survey-top">
+            <ClothesButton type = "top" clothing = "Short Sleeve" name = "ShortSleeve"  picture="shortSleeve.png" onChange={this.addItem}/>
+            <ClothesButton type= "top" clothing = "Long Sleeve" name = "LongSleeve" picture="longSleeve.png" onChange={this.addItem}/>
+          </div>
 
-        <div className = "Survey-bottom">
-          <ClothesButton type="bottom" clothing="Jeans" name = "Jeans" picture="jeans.png"  onChange={this.addItem}/>
-          <ClothesButton type="bottom" clothing="Shorts" name = "Shorts" picture="shorts.png" onChange={this.addItem}/>
-        </div>
+          <div className = "Survey-bottom">
+            <ClothesButton type="bottom" clothing="Jeans" name = "Jeans" picture="jeans.png"  onChange={this.addItem}/>
+            <ClothesButton type="bottom" clothing="Shorts" name = "Shorts" picture="shorts.png" onChange={this.addItem}/>
+          </div>
 
-        <div className = "Survey-shoes">
-          <ClothesButton type="shoes" clothing="Rain Boots" name = "RainBoots" picture="rainBoots.png" onChange={this.addItem}/>
-          <ClothesButton type="shoes" clothing="Sneakers" name = "Sneakers" picture="sneakers.png" onChange={this.addItem}/>
-        </div>
+          <div className = "Survey-shoes">
+            <ClothesButton type="shoes" clothing="Rain Boots" name = "RainBoots" picture="rainBoots.png" onChange={this.addItem}/>
+            <ClothesButton type="shoes" clothing="Sneakers" name = "Sneakers" picture="sneakers.png" onChange={this.addItem}/>
+          </div>
 
-        <div className = "Survey-outerwear">
-          <ClothesButton type="outerwear" clothing="Parka" name = "Parka" picture="parka.png" onChange={this.addItem}/>
-          <ClothesButton type="outerwear" clothing="Rain Jacket" name = "RainJacket" picture="rainJacket.png" onChange={this.addItem}/>
-        </div>
+          <div className = "Survey-outerwear">
+            <ClothesButton type="outerwear" clothing="Parka" name = "Parka" picture="parka.png" onChange={this.addItem}/>
+            <ClothesButton type="outerwear" clothing="Rain Jacket" name = "RainJacket" picture="rainJacket.png" onChange={this.addItem}/>
+          </div>
 
-        <div className = "Survey-accessory">
-          <ClothesButton type="accessory" clothing="Sunglasses" name = "Sunglasses" picture="sunglasses.png" onChange={this.addItem}/>
-          <ClothesButton type="accessory" clothing="Umbrella" name = "Umbrella" picture="umbrella.png" onChange={this.addItem}/>
-        </div>
+          <div className = "Survey-accessory">
+            <ClothesButton type="accessory" clothing="Sunglasses" name = "Sunglasses" picture="sunglasses.png" onChange={this.addItem}/>
+            <ClothesButton type="accessory" clothing="Umbrella" name = "Umbrella" picture="umbrella.png" onChange={this.addItem}/>
+          </div>
 
-        <div className = "Survey-submit">
-            <ClosetSubmitButton closet= {this.state} userId = {this.props.userId} onClick = {() => navigate("/profile/"+String(this.props.userId))}/>
+
+          <div className = "Survey-submit">
+          {(this.state.top.length !== 0 || this.state.bottom.length !== 0 || this.state.shoes.length !== 0 || this.state.outerwear.length !== 0 || this.state.accessory.length !== 0) && (
+              <ClosetSubmitButton closet= {this.state} userId = {this.props.userId} />
+            )}  
+          </div>
         </div>
         </>
     )

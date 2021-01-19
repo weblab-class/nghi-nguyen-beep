@@ -14,11 +14,13 @@ class LongSleeve extends GeneralItem {
     }
 
     render(){
-        if (this.state.lowTemp <= this.props.temp && this.props.temp <= this.state.highTemp) {
+        let withinRange = (this.state.lowTemp <= this.props.temp && this.props.temp <= this.state.highTemp);
+        let itemInCloset = this.props.itemInCloset.includes(String(this.constructor.name));
+        if (withinRange && itemInCloset) {
             return (<> <img src={longSleeve} id= {"GeneralItem-"+String(this.constructor.name)}/> </>);
         }
         return (<></>);
     }
-    }
+}
 
 export default LongSleeve;

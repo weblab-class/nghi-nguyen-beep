@@ -68,16 +68,16 @@ class Profile extends Component {
               <div className = "Outfit">
                 <img src={Bear} id= "Profile-bear"/>
                 <GeneralItem temp = {this.state.temp}/>
-                <Umbrella temp = {this.state.temp} />
-                <Sunglasses temp = {this.state.temp} />
-                <Jeans temp = {this.state.temp} />
-                <Shorts temp = {this.state.temp} />
-                <Sneakers temp = {this.state.temp} />
-                <RainBoots temp = {this.state.temp} />
-                <Shirt temp = {this.state.temp} />
-                <LongSleeve temp = {this.state.temp} />
-                <RainJacket temp = {this.state.temp} />
-                <Parka temp = {this.state.temp} />
+                <Umbrella temp = {this.state.temp} itemInCloset = {this.state.closet.accessories} />
+                <Sunglasses temp = {this.state.temp} itemInCloset = {this.state.closet.accessories} />
+                <Jeans temp = {this.state.temp} itemInCloset = {this.state.closet.bottoms} />
+                <Shorts temp = {this.state.temp} itemInCloset = {this.state.closet.bottoms} />
+                <Sneakers temp = {this.state.temp} itemInCloset = {this.state.closet.shoes} />
+                <RainBoots temp = {this.state.temp} itemInCloset = {this.state.closet.shoes} />
+                <Shirt temp = {this.state.temp} itemInCloset = {this.state.closet.tops} />
+                <LongSleeve temp = {this.state.temp} itemInCloset = {this.state.closet.tops} />
+                <RainJacket temp = {this.state.temp} itemInCloset = {this.state.closet.outerwear} />
+                <Parka temp = {this.state.temp} itemInCloset = {this.state.closet.outerwear}/>
                 
               </div>
               <WeatherSubmitButton onChange = {this.getTemp}/>

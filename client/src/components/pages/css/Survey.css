@@ -1,29 +1,41 @@
+.Survey-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-evenly;
+}
+
 .Survey-top{
     padding-top: 5%;
+    flex-direction: row;
     display: flex;
     align-items: center;
     justify-content:space-evenly;
 }
 .Survey-bottom{
     padding-top: 4%;
+    flex-direction: row;
     display: flex;
     align-items: center;
     justify-content:space-evenly;
 }
 .Survey-shoes{
     padding-top: 4%;
+    flex-direction: row;
     display: flex;
     align-items: center;
     justify-content:space-evenly;
 }
 .Survey-outerwear{
     padding-top: 4%;
+    flex-direction: row;
     display: flex;
     align-items: center;
     justify-content:space-evenly;
 }
 .Survey-accessory{
     padding-top: 4%;
+    flex-direction: row;
     display: flex;
     align-items: center;
     justify-content:space-evenly;

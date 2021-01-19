@@ -31,7 +31,7 @@ nextPressed = () => {
 render() {
     console.log("avatar", this.props);
 
-    if (this.props.newUser) {
+   
         if (this.state.avatarSelected) { // next button only appears after avatar is selected
             return (
             <>
@@ -41,7 +41,7 @@ render() {
                 <input type="image" src={Bear} name="bear" id="bear" onClick={() => this.avatarPressed("bear")}/>
             </div>
                 <div className= "Profile-next">
-                    <AvatarSubmitButton avatar= {this.state.avatarSelected}/>
+                    <AvatarSubmitButton avatar= {this.state}/>
                 </div>
             </>
             )
@@ -51,22 +51,12 @@ render() {
             <>
             <div className = "Profile-avatar">
                 {/* <input type="image" src={Cat} name="cat" id="cat" onClick={() => this.avatarPressed("cat")} /> */}
+                <h2>Select an avatar</h2>
                 <input type="image" src={Bear} name="bear" id="bear" onClick={() => this.avatarPressed("bear")}/>   
             </div> 
         </>
             )}
         }
-
-    
-        else {
-            return (
-                <>
-                    <Redirect to={"/"}/>
-                </>
-                )}
-               
-
-    }
 
 }
 export default ChooseAvatar;

@@ -14,8 +14,9 @@ class Shirt extends GeneralItem {
     }
 
     render(){
-        console.log("shirt", this.props, (this.state.lowTemp <= this.props.temp && this.props.temp <= this.state.highTemp))
-        if (this.state.lowTemp <= this.props.temp && this.props.temp <= this.state.highTemp) {
+        let withinRange = (this.state.lowTemp <= this.props.temp && this.props.temp <= this.state.highTemp);
+        let itemInCloset = this.props.itemInCloset.includes("ShortSleeve");
+        if (withinRange && itemInCloset) {
             return (<> <img src={shirt} id= {"GeneralItem-"+String(this.constructor.name)}/> </>);
         }
         return (<></>);

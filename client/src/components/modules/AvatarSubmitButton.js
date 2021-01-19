@@ -16,7 +16,8 @@ componentDidMount() {
 
 
 saveAvatar = (body) => {
-    post("/api/avatar", body).then(navigate("/survey"));
+    console.log("body", body, typeof(body));
+    post("/api/avatar/", body).then(navigate("/survey"));
   };
 
 render() {

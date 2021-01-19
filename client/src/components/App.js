@@ -14,11 +14,7 @@ import MainUser from "./pages/MainUser.js";
 import { socket } from "../client-socket.js";
 import "./pages/App.css";
 import { get, post } from "../utilities";
-// import { navigate } from "gatsby";
 
-/**
- * Define the "App" component as a class.
- */
 class App extends Component {
   // makes props available in this component
   constructor(props) {
@@ -28,6 +24,7 @@ class App extends Component {
       isLoggedOut: null,
       userName: null,
       newUser: null,
+      introCompleted: null
 
     };
   }
@@ -52,7 +49,7 @@ class App extends Component {
 
     if (this.state.newUser) {
       post("/api/login", { token: userToken }).then((user) => {
-        this.setState({ isLoggedOut:false, userId: user._id, userName: user.name}, () => navigate("/avatar"));
+        this.setState({ isLoggedOut:false, userId: user._id, userName: user.name});
         post("/api/initsocket", { socketid: socket.id });
 
       });
