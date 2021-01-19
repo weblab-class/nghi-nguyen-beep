@@ -8,17 +8,17 @@ class Umbrella extends GeneralItem {
     constructor(props) {
         super(props);
         this.state = {
-            highTemp: 40,
-            lowTemp: -50,
+            highTemp: 80,
+            lowTemp: 40,
         };
     }
 
-render(){
-    return (
-        <>
-        <img src={umbrella} id= {"GeneralItem-"+String(this.constructor.name)}></img>
-        </>
-    );}
+    render(){
+        if (this.state.lowTemp <= this.props.temp && this.props.temp <= this.state.highTemp) {
+            return (<> <img src={umbrella} id= {"GeneralItem-"+String(this.constructor.name)}/> </>);
+        }
+        return (<></>);
+    }
 }
 
 export default Umbrella;

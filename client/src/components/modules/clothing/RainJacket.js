@@ -8,17 +8,17 @@ class RainJacket extends GeneralItem {
     constructor(props) {
         super(props);
         this.state = {
-            highTemp: 40,
-            lowTemp: -50,
+            highTemp: 70,
+            lowTemp: 40,
         };
     }
 
-render(){
-    return (
-        <>
-        <img src={rainJacket} id= {"GeneralItem-"+String(this.constructor.name)}></img>
-        </>
-    );}
+    render(){
+        if (this.state.lowTemp <= this.props.temp && this.props.temp <= this.state.highTemp) {
+            return (<> <img src={rainJacket} id= {"GeneralItem-"+String(this.constructor.name)}/> </>);
+        }
+        return (<></>);
+    }
 }
 
 export default RainJacket;

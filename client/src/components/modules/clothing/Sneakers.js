@@ -13,12 +13,12 @@ class Sneakers extends GeneralItem {
         };
     }
 
-render(){
-    return (
-        <>
-        <img src={sneakers} id= {"GeneralItem-"+String(this.constructor.name)}></img>
-        </>
-    );}
+    render(){
+        if (this.state.lowTemp <= this.props.temp && this.props.temp <= this.state.highTemp) {
+            return (<> <img src={sneakers} id= {"GeneralItem-"+String(this.constructor.name)}/> </>);
+        }
+        return (<></>);
+    }
 }
 
 export default Sneakers;

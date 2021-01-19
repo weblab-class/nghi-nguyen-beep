@@ -14,11 +14,11 @@ class Jeans extends GeneralItem {
     }
 
 render(){
-    return (
-        <>
-        <img src={jeans} id= {"GeneralItem-"+String(this.constructor.name)}></img>
-        </>
-    );}
+    if (this.state.lowTemp <= this.props.temp && this.props.temp <= this.state.highTemp) {
+        return (<> <img src={jeans} id= {"GeneralItem-"+String(this.constructor.name)}/> </>);
+    }
+    return (<></>);
+}
 }
 
 export default Jeans;

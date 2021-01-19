@@ -15,6 +15,7 @@ import Parka from "../modules/clothing/Parka.js";
 import RainJacket from "../modules/clothing/RainJacket.js";
 import Umbrella from "../modules/clothing/Umbrella.js";
 import Sunglasses from "../modules/clothing/Sunglasses.js";
+import GeneralItem from "../modules/clothing/GeneralItem.js";
 // import "./Profile.css";
 
 class Profile extends Component {
@@ -66,9 +67,17 @@ class Profile extends Component {
               <h2>In {this.state.city}, it is currently {this.state.temp}°F</h2>
               <div className = "Outfit">
                 <img src={Bear} id= "Profile-bear"/>
-                <RainBoots/>
-                <RainJacket/>
-                <Umbrella/>
+                <GeneralItem temp = {this.state.temp}/>
+                <Umbrella temp = {this.state.temp} />
+                <Sunglasses temp = {this.state.temp} />
+                <Jeans temp = {this.state.temp} />
+                <Shorts temp = {this.state.temp} />
+                <Sneakers temp = {this.state.temp} />
+                <RainBoots temp = {this.state.temp} />
+                <Shirt temp = {this.state.temp} />
+                <LongSleeve temp = {this.state.temp} />
+                <RainJacket temp = {this.state.temp} />
+                <Parka temp = {this.state.temp} />
                 
               </div>
               <WeatherSubmitButton onChange = {this.getTemp}/>

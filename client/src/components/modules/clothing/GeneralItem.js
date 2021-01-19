@@ -6,12 +6,14 @@ class GeneralItem extends Component {
         this.state = {
             highTemp: null,
             lowTemp: null,
+            curTemp: null
         };
     }
 
 
 componentDidMount() {
     document.title = "general item";
+    this.setState({curTemp: this.props.temp});
 }
 
 render() {

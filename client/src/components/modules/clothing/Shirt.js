@@ -13,12 +13,13 @@ class Shirt extends GeneralItem {
         };
     }
 
-render(){
-    return (
-        <>
-        <img src={shirt} id= {"GeneralItem-"+String(this.constructor.name)}></img>
-        </>
-    );}
+    render(){
+        console.log("shirt", this.props, (this.state.lowTemp <= this.props.temp && this.props.temp <= this.state.highTemp))
+        if (this.state.lowTemp <= this.props.temp && this.props.temp <= this.state.highTemp) {
+            return (<> <img src={shirt} id= {"GeneralItem-"+String(this.constructor.name)}/> </>);
+        }
+        return (<></>);
+    }
 }
 
 export default Shirt;
