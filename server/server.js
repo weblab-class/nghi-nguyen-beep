@@ -12,7 +12,7 @@
 | - Sets up error handling in case something goes wrong when handling a request
 | - Actually starts the webserver
 */
-require('dotenv').config();
+
 // validator runs some basic checks to make sure you've set everything up correctly
 // this is a tool provided by staff, so you don't need to worry about it
 const validator = require("./validator");
@@ -27,6 +27,7 @@ const path = require("path"); // provide utilities for working with file and dir
 
 const api = require("./api");
 const auth = require("./auth");
+require('dotenv').config();
 
 // socket stuff
 const socketManager = require("./server-socket");
