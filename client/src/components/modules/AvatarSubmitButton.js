@@ -11,7 +11,7 @@ class AvatarSubmitButton extends Component {
 
 
 componentDidMount() {
-    document.title = "AvatarSubmitButton";
+    document.title = "weatherly";
 }
 
 

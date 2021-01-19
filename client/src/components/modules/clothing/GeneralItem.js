@@ -12,7 +12,7 @@ class GeneralItem extends Component {
 
 
 componentDidMount() {
-    document.title = "general item";
+    document.title = "weatherly";
     this.setState({curTemp: this.props.temp});
 }
 

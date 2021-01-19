@@ -21,7 +21,7 @@ class WeatherSubmitButton extends Component {
     }
 
 componentDidMount() {
-    document.title = "WeatherSubmitButton";   
+    document.title = "weatherly";   
 }
 
 getCoordinates  = async () => {

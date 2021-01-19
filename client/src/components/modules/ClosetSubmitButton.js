@@ -11,7 +11,7 @@ class ClosetSubmitButton extends Component {
 
 
 componentDidMount() {
-    document.title = "ClosetSubmitButton";
+    document.title = "weatherly";
 }
 
 

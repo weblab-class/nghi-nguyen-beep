@@ -24,7 +24,7 @@ class ClothesButton extends Component {
 
 
 componentDidMount() {
-    document.title = "ClothesButton";
+    document.title = "weatherly";
 }
 
 handleChange = (type, clothing) => {
