@@ -7,6 +7,8 @@ import BearThree from "../assets/images/logo3.gif";
 import BearFour from "../assets/images/logo4.gif";
 import BearFive from "../assets/images/logo5.gif";
 import BearSix from "../assets/images/waving.gif";
+import welcomeThree from "../assets/images/welcomeThree.gif";
+import wavingTwo from "../assets/images/wavingTwo.gif";
 import "../pages/css/General.css";
 import { navigate } from "@reach/router";
 
@@ -32,7 +34,7 @@ render() {
             <div className = "General-main">
                 <h2>Welcome</h2>
                 <h2> {this.props.userName}</h2>
-                <img src={BearSix} id= "General-bear-gif"></img>
+                <img src={wavingTwo} id= "General-bear-gif"></img>
                 <button type="submit" onClick= {() => navigate("/avatar")}>Click here to get started!</button>
             </div>
             </>
