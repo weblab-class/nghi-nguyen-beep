@@ -91,7 +91,7 @@ class App extends Component {
           userName={this.state.userName}
         />
           <Router>
-            <General path="/"/>
+            <General path="/" userName= {this.state.userName} userId = {this.state.userId}/>
             <About path="/about"/>
             <Profile path="/profile/:userId" userName= {this.state.userName} userId = {this.state.userId}/>
             <SignedOut path="/goodbye" />
@@ -115,7 +115,7 @@ class App extends Component {
         userName={this.state.userName}
       />
         <Router>
-          <General path="/"/>
+          <General path="/" userName= {this.state.userName}/>
           <About path="/about"/>
           <Profile path="/profile/:userId" userName= {this.state.userName}/>
           <SignedOut path="/goodbye" />

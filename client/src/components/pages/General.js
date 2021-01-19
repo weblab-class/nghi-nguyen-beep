@@ -23,6 +23,18 @@ componentDidMount() {
 }
 
 render() {
+    console.log("gen", this.props.userName)
+    if (this.props.userName) {
+        return (
+            <>
+            <div className = "pageContainer">
+                <h2>Welcome Back</h2>
+                <h2> {this.props.userName}</h2>
+                <img src={BearFive} id= "General-bear-gif"></img>
+            </div>
+            </>
+        )
+    }
     return (
         <>
         <div className = "pageContainer">

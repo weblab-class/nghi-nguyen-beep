@@ -37,7 +37,7 @@ render() {
             <>
             <div className = "Profile-avatar">
             <h2>{this.state.avatarSelected} selected</h2>
-                <input type="image" src={Cat} name="cat" id="cat" onClick={() => this.avatarPressed("cat")} />
+                {/* <input type="image" src={Cat} name="cat" id="cat" onClick={() => this.avatarPressed("cat")} /> */}
                 <input type="image" src={Bear} name="bear" id="bear" onClick={() => this.avatarPressed("bear")}/>
             </div>
                 <div className= "Profile-next">
@@ -50,7 +50,7 @@ render() {
         return (
             <>
             <div className = "Profile-avatar">
-                <input type="image" src={Cat} name="cat" id="cat" onClick={() => this.avatarPressed("cat")} />
+                {/* <input type="image" src={Cat} name="cat" id="cat" onClick={() => this.avatarPressed("cat")} /> */}
                 <input type="image" src={Bear} name="bear" id="bear" onClick={() => this.avatarPressed("bear")}/>   
             </div> 
         </>

@@ -69,6 +69,12 @@ router.post("/closet", (req, res) => {
   ).then((user) => {res.send(user)});
 });
 
+router.post("/avatar", (req, res) => {
+  console.log("req", req.body);
+  User.findByIdAndUpdate(req.body.userId, 
+    {avatar: req.body.avatar}
+    ).then((user) => {res.send(user)});
+});
 
 
 router.all("*", (req, res) => {
