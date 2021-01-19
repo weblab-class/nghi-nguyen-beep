@@ -19,7 +19,8 @@ render() {
         <>
         <div className = "About-main">
         <img src={aboutMe} ></img>
-         
+         <h2>Nghi Nguyen</h2>
+         <p>I like drawing and coding stuff like a BAAWS</p>
         </div>
         </>
     )
