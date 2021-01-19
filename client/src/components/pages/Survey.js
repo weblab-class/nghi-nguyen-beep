@@ -102,8 +102,9 @@ render() {
     return (
         <>
         <div className="Survey-main">
+          <h2>Choose what you have in your closet!</h2>
           <div className = "Survey-top">
-            <ClothesButton type = "top" clothing = "Short Sleeve" name = "ShortSleeve"  picture="shortSleeve.png" onChange={this.addItem}/>
+            <ClothesButton type = "top" clothing = "Short Sleeve" name = "ShortSleeve"  picture="shirt.png" onChange={this.addItem}/>
             <ClothesButton type= "top" clothing = "Long Sleeve" name = "LongSleeve" picture="longSleeve.png" onChange={this.addItem}/>
           </div>
 

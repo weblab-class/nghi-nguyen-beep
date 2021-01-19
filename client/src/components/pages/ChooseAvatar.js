@@ -10,8 +10,7 @@ class ChooseAvatar extends Component {
         this.avatarPressed = this.avatarPressed.bind();
         this.nextPressed = this.nextPressed.bind();
         this.state = {
-            avatarSelected: null,
-            nextSelected: null
+            avatarSelected: null
         };
     }
 

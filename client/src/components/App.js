@@ -49,7 +49,7 @@ class App extends Component {
 
     if (this.state.newUser) {
       post("/api/login", { token: userToken }).then((user) => {
-        this.setState({ isLoggedOut:false, userId: user._id, userName: user.name});
+        this.setState({ isLoggedOut:false, userId: user._id, userName: user.name}, () => navigate("/"));
         post("/api/initsocket", { socketid: socket.id });
 
       });
@@ -57,7 +57,7 @@ class App extends Component {
 
     else {
       post("/api/login", { token: userToken }).then((user) => {
-        this.setState({ userId: user._id, userName: user.name, newUser: false});
+        this.setState({ userId: user._id, userName: user.name, newUser: false}, () => navigate("/"));
         post("/api/initsocket", { socketid: socket.id });
 
       });

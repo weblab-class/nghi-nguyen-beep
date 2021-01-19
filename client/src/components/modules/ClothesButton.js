@@ -3,6 +3,18 @@ import "../modules/ClothesButton.css";
 // import "../../components/pages/";
 import ClosetSubmitButton from "../modules/ClosetSubmitButton.js";
 import heartButton from "../assets/images/button.png";
+import shirt from "../assets/images/clothing/shirt.png";
+import longSleeve from "../assets/images/clothing/longSleeve.png";
+import jeans from "../assets/images/clothing/jeans.png";
+import shorts from "../assets/images/clothing/shorts.png";
+import parka from "../assets/images/clothing/parka.png";
+import rainJacket from "../assets/images/clothing/rainJacket.png";
+import sneakers from "../assets/images/clothing/sneakers.png";
+import rainBoots from "../assets/images/clothing/rainBoots.png";
+import umbrella from "../assets/images/clothing/umbrella.png";
+import sunglasses from "../assets/images/clothing/sunglasses.png";
+
+
 class ClothesButton extends Component {
     constructor(props) {
         super(props);
@@ -42,7 +54,7 @@ render() {
             <div className= "buttonLabel">
 
             <input type= "checkbox" id = {"cb" + String(this.props.clothing)} onClick= {() => this.handleChange(this.props.type, this.props.name)}/>
-            <label htmlFor= {"cb" + String(this.props.clothing)}>  {this.props.clothing}  </label>
+            <label htmlFor= {"cb" + String(this.props.clothing)}> {this.props.clothing} </label>
             </div>
             {/* https://stackoverflow.com/questions/30663562/use-images-like-checkboxes/30663705 */}
    

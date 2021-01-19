@@ -73,7 +73,7 @@ router.post("/avatar", (req, res) => {
   console.log("req", req.body, req.body.avatar);
 
   User.findByIdAndUpdate(req.body.userId, 
-    {avatar: String(req.body.avatar.avatarSelected)}
+    {avatar: req.body.avatar}
     ).then((user) => {res.send(user)});
 });
 

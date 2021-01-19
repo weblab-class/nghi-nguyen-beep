@@ -65,6 +65,7 @@ class Profile extends Component {
         <>
           <div className = "Profile-main">
               <h2>In {this.state.city}, it is currently {this.state.temp}°F</h2>
+              <h2>Based on your closet, we suggest wearing the following:</h2>
               <div className = "Outfit">
                 <img src={Bear} id= "Profile-bear"/>
                 <GeneralItem temp = {this.state.temp}/>
@@ -89,7 +90,8 @@ class Profile extends Component {
       <>
         <div className = "Profile-main">
             <h2>Hi {this.props.userName}!</h2>
-            <h2>Click the button below to get your outfit today!</h2>
+            <h2>Click the button below to get your outfit today! </h2>
+            <p> (please allow some loading bts after pressing button) </p>
             <div className = "Outfit">
               <img src={bearTwo} id= "Profile-bear"></img>
             </div>

@@ -67,7 +67,7 @@ render() {
    
         return (
         <>
-        <button type="submit" onClick= {() => this.getCoordinates()} value={this.props.clothing} >Submit</button>
+        <button type="submit" onClick= {() => this.getCoordinates()} value={this.props.clothing}>Submit</button>
         </>
         )
     }

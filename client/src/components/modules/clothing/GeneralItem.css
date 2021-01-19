@@ -1,8 +1,101 @@
-[id*="GeneralItem"]{
+.GeneralItem-main{
+    display: flex;
+}
+[id*="GeneralItem-"]{
     position: absolute;
     padding: 2%;
     max-width: 40vw;
     max-height: 40vh;
     width: auto;
     height: auto;
+}
+
+#GeneralItemText-Jeans{
+    display: inline;
+    position: relative;
+    right: 35%;
+    top: 40%;
+    color: rgb(255, 255, 255);
+    letter-spacing: 3px;
+}
+
+#GeneralItemText-Parka{
+    display: inline;
+    position: relative;
+    right: 35%;
+    bottom: 20%;
+    color: rgb(255, 255, 255);
+    letter-spacing: 3px;
+}
+
+#GeneralItemText-Shirt{
+    display: inline;
+    position: relative;
+    right: 35%;
+    bottom: 20%;
+    color: rgb(255, 255, 255);
+    letter-spacing: 3px;
+}
+
+#GeneralItemText-LongSleeve{
+    /* display: inline; */
+    position: relative;
+    right: 35%;
+    bottom: 20%;
+    color: rgb(255, 255, 255);
+    letter-spacing: 3px;
+}
+
+#GeneralItemText-RainJacket{
+    /* display: inline; */
+    position: relative;
+    right: 35%;
+    bottom: 20%;
+    color: rgb(255, 255, 255);
+    letter-spacing: 3px;
+}
+
+#GeneralItemText-Shorts{
+    /* display: inline; */
+    position: relative;
+    right: 35%;
+    top: 40%;
+    color: rgb(255, 255, 255);
+    letter-spacing: 3px;
+}
+
+#GeneralItemText-Sneakers{
+    /* display: inline; */
+    position: relative;
+    right: 35%;
+    top: 40%;
+    color: rgb(255, 255, 255);
+    letter-spacing: 3px;
+}
+
+#GeneralItemText-RainBoots{
+    /* display: inline; */
+    position: relative;
+    right: 35%;
+    top: 50%;
+    color: rgb(255, 255, 255);
+    letter-spacing: 3px;
+}
+
+#GeneralItemText-Sunglasses{
+    /* display: inline; */
+    position: relative;
+    right: 35%;
+    bottom: 30%;
+    color: rgb(255, 255, 255);
+    letter-spacing: 3px;
+}
+
+#GeneralItemText-Umbrella{
+    /* display: inline; */
+    position: relative;
+    right: 35%;
+    bottom: 30%;
+    color: rgb(255, 255, 255);
+    letter-spacing: 3px;
 }
