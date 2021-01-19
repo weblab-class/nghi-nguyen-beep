@@ -6,7 +6,15 @@ import "../pages/css/Profile.css";
 import "../../utilities.css";
 import WeatherSubmitButton from "../modules/WeatherSubmitButton.js";
 import Shirt from "../modules/clothing/Shirt.js";
+import LongSleeve from "../modules/clothing/LongSleeve.js";
+import Jeans from "../modules/clothing/Jeans.js";
 import Shorts from "../modules/clothing/Shorts.js";
+import Sneakers from "../modules/clothing/Sneakers.js";
+import RainBoots from "../modules/clothing/RainBoots.js";
+import Parka from "../modules/clothing/Parka.js";
+import RainJacket from "../modules/clothing/RainJacket.js";
+import Umbrella from "../modules/clothing/Umbrella.js";
+import Sunglasses from "../modules/clothing/Sunglasses.js";
 // import "./Profile.css";
 
 class Profile extends Component {
@@ -58,8 +66,9 @@ class Profile extends Component {
               <h2>In {this.state.city}, it is currently {this.state.temp}°F</h2>
               <div className = "Outfit">
                 <img src={Bear} id= "Profile-bear"/>
-                <Shorts/>
-                <Shirt/>
+                <RainBoots/>
+                <RainJacket/>
+                <Umbrella/>
                 
               </div>
               <WeatherSubmitButton onChange = {this.getTemp}/>
