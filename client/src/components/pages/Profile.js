@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { get } from "../../utilities";
 import Bear from "../assets/images/avatars/bearmod.png";
 import bearTwo from "../assets/images/logo.gif";
+import sadBear from "../assets/images/sadBear.png";
 import "../pages/css/Profile.css";
 import "../../utilities.css";
 import WeatherSubmitButton from "../modules/WeatherSubmitButton.js";
@@ -48,58 +49,130 @@ class Profile extends Component {
           accessories: user.closet.accessories,
         }
       }));
-    ("geolocation" in navigator) ? this.setState({geolocationAllowed : true}) : this.setState({geolocationAllowed : false});
+    (navigator.geolocation) ? this.setState({geolocationAllowed : true}) : this.setState({geolocationAllowed : false});
+
   }
 
   getTemp = (obj) => {
     console.log(obj);
-    this.setState({temp: obj.temp, city: obj.city, loading: false}, console.log("getTemp", this.state));
+    if (obj.geolocationAllowed) {
+      this.setState({temp: obj.temp, city: obj.city, loading: false, geolocationAllowed: true}, console.log("getTemp", this.state));
+    }
+    else{
+      this.setState({geolocationAllowed: false}, console.log("getTemp", this.state));
+    }
   }
 
   getOutfit = () => {}
 
   render() {
     console.log("profile", this.props, this.state);
-    if (this.state.city) { 
-      return (
+    console.log("nav", navigator);
+    if (this.state.geolocationAllowed){
+      if (this.state.city) { 
+        return (
+          <>
+            <div className = "Profile-main">
+                <h2>In {this.state.city}, it is currently {this.state.temp}°F</h2>
+                <h2>Based on your closet, we suggest wearing the following:</h2>
+                <div className = "Outfit">
+                  <img src={Bear} id= "Profile-bear"/>
+                  <GeneralItem temp = {this.state.temp}/>
+                  <Umbrella temp = {this.state.temp} itemInCloset = {this.state.closet.accessories} />
+                  <Sunglasses temp = {this.state.temp} itemInCloset = {this.state.closet.accessories} />
+                  <Jeans temp = {this.state.temp} itemInCloset = {this.state.closet.bottoms} />
+                  <Shorts temp = {this.state.temp} itemInCloset = {this.state.closet.bottoms} />
+                  <Sneakers temp = {this.state.temp} itemInCloset = {this.state.closet.shoes} />
+                  <RainBoots temp = {this.state.temp} itemInCloset = {this.state.closet.shoes} />
+                  <Shirt temp = {this.state.temp} itemInCloset = {this.state.closet.tops} />
+                  <LongSleeve temp = {this.state.temp} itemInCloset = {this.state.closet.tops} />
+                  <RainJacket temp = {this.state.temp} itemInCloset = {this.state.closet.outerwear} />
+                  <Parka temp = {this.state.temp} itemInCloset = {this.state.closet.outerwear}/>
+                </div>
+                <WeatherSubmitButton onChange = {this.getTemp} geolocationAllowed = {this.state.geolocationAllowed}/>
+            </div>
+          </>
+        );
+      }
+
+      else { 
+        return (
+            <>
+            <div className = "Profile-main">
+                <h2>Hi {this.props.userName}!</h2>
+                <h2>Click the button below to get your outfit today! </h2>
+                <p> (please allow some loading bts after pressing button) </p>
+                <div className = "Outfit">
+                  <img src={bearTwo} id= "Profile-bear"></img>
+                </div>
+                <WeatherSubmitButton onChange = {this.getTemp} geolocationAllowed = {this.state.geolocationAllowed}/>
+            </div>
+            </>
+          );
+      };
+    }
+
+    else {
+      return(
         <>
           <div className = "Profile-main">
-              <h2>In {this.state.city}, it is currently {this.state.temp}°F</h2>
-              <h2>Based on your closet, we suggest wearing the following:</h2>
+         
+              <h2>Hmm. I can't seem to access your location</h2>
+              <p>Allow location access to get your outfit, then refresh site!</p>
               <div className = "Outfit">
-                <img src={Bear} id= "Profile-bear"/>
-                <GeneralItem temp = {this.state.temp}/>
-                <Umbrella temp = {this.state.temp} itemInCloset = {this.state.closet.accessories} />
-                <Sunglasses temp = {this.state.temp} itemInCloset = {this.state.closet.accessories} />
-                <Jeans temp = {this.state.temp} itemInCloset = {this.state.closet.bottoms} />
-                <Shorts temp = {this.state.temp} itemInCloset = {this.state.closet.bottoms} />
-                <Sneakers temp = {this.state.temp} itemInCloset = {this.state.closet.shoes} />
-                <RainBoots temp = {this.state.temp} itemInCloset = {this.state.closet.shoes} />
-                <Shirt temp = {this.state.temp} itemInCloset = {this.state.closet.tops} />
-                <LongSleeve temp = {this.state.temp} itemInCloset = {this.state.closet.tops} />
-                <RainJacket temp = {this.state.temp} itemInCloset = {this.state.closet.outerwear} />
-                <Parka temp = {this.state.temp} itemInCloset = {this.state.closet.outerwear}/>
-                
+                <img src={sadBear} id= "Profile-bear"></img>
               </div>
-              <WeatherSubmitButton onChange = {this.getTemp}/>
+              <WeatherSubmitButton onChange = {this.getTemp} geolocationAllowed = {this.state.geolocationAllowed}/>
           </div>
           </>
       );
     }
-    return (
-      <>
-        <div className = "Profile-main">
-            <h2>Hi {this.props.userName}!</h2>
-            <h2>Click the button below to get your outfit today! </h2>
-            <p> (please allow some loading bts after pressing button) </p>
-            <div className = "Outfit">
-              <img src={bearTwo} id= "Profile-bear"></img>
-            </div>
-            <WeatherSubmitButton onChange = {this.getTemp}/>
-        </div>
-        </>
-    );
+
   }
+
+
+  // render() {
+  //   console.log("profile", this.props, this.state);
+  //   if (this.state.city) { 
+  //     return (
+  //       <>
+  //         <div className = "Profile-main">
+  //             <h2>In {this.state.city}, it is currently {this.state.temp}°F</h2>
+  //             <h2>Based on your closet, we suggest wearing the following:</h2>
+  //             <div className = "Outfit">
+  //               <img src={Bear} id= "Profile-bear"/>
+  //               <GeneralItem temp = {this.state.temp}/>
+  //               <Umbrella temp = {this.state.temp} itemInCloset = {this.state.closet.accessories} />
+  //               <Sunglasses temp = {this.state.temp} itemInCloset = {this.state.closet.accessories} />
+  //               <Jeans temp = {this.state.temp} itemInCloset = {this.state.closet.bottoms} />
+  //               <Shorts temp = {this.state.temp} itemInCloset = {this.state.closet.bottoms} />
+  //               <Sneakers temp = {this.state.temp} itemInCloset = {this.state.closet.shoes} />
+  //               <RainBoots temp = {this.state.temp} itemInCloset = {this.state.closet.shoes} />
+  //               <Shirt temp = {this.state.temp} itemInCloset = {this.state.closet.tops} />
+  //               <LongSleeve temp = {this.state.temp} itemInCloset = {this.state.closet.tops} />
+  //               <RainJacket temp = {this.state.temp} itemInCloset = {this.state.closet.outerwear} />
+  //               <Parka temp = {this.state.temp} itemInCloset = {this.state.closet.outerwear}/>
+                
+  //             </div>
+  //             <WeatherSubmitButton onChange = {this.getTemp} geolocationAllowed = {this.state.geolocationAllowed}/>
+  //         </div>
+  //         </>
+  //     );
+  //   }
+  //   return (
+  //     <>
+  //       <div className = "Profile-main">
+  //           <h2>Hi {this.props.userName}!</h2>
+  //           <h2>Click the button below to get your outfit today! </h2>
+  //           <p> (please allow some loading bts after pressing button) </p>
+  //           <div className = "Outfit">
+  //             <img src={bearTwo} id= "Profile-bear"></img>
+  //           </div>
+  //           <WeatherSubmitButton onChange = {this.getTemp} geolocationAllowed = {this.state.geolocationAllowed}/>
+  //       </div>
+  //       </>
+  //   );
+  // }
 }
 
 export default Profile;

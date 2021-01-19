@@ -15,6 +15,7 @@ class WeatherSubmitButton extends Component {
             latitude: null,
             city: null,
             tempF: null,
+            geolocationAllowed: null,
 
         };
     }
@@ -27,9 +28,17 @@ getCoordinates  = async () => {
     await navigator.geolocation.getCurrentPosition(
         position => this.setState({ 
         latitude: position.coords.latitude, 
-        longitude: position.coords.longitude
+        longitude: position.coords.longitude,
+        geolocationAllowed: true,
         }, () => this.getWeather()), 
-        err => console.log(err)
+        err => this.setState({
+            geolocationAllowed: false
+        }, () => 
+        {
+            if (this.props.onChange) {
+                this.props.onChange(this.state);
+            }
+        })
     );
 
     // navigator.geolocation.getCurrentPosition( ( function(position) {
@@ -56,20 +65,21 @@ getWeather = () => {
 
 
 render() {
-    if (this.state.city) {
-        return (
-            <>
-            {/* <h2>In {this.state.city}, it is currently {this.state.tempF}°F </h2> */}
-            <button type="submit" onClick= {() => this.getCoordinates()} value={this.props.clothing} >Submit</button>
-            </>
-            )
-    }
-   
+    console.log("weather", this.props)
+    if (this.props.geolocationAllowed) {
         return (
         <>
         <button type="submit" onClick= {() => this.getCoordinates()} value={this.props.clothing}>Submit</button>
         </>
         )
+        }
+    
+    else {
+        return (
+            <>
+            </>
+            )
+    }
     }
 
 }
