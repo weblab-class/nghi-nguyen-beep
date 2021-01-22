@@ -1,0 +1,10 @@
+[id*="Avatar-"]{
+    /* position: absolute; */
+    /* padding-top: 18%; */
+    padding: 2%;
+    /* margin-bottom: -15%; */
+    max-width: 40vw;
+    max-height: 40vh;
+    width: auto;
+    height: auto;
+}

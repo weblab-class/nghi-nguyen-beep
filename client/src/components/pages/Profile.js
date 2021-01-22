@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { get } from "../../utilities";
-import Bear from "../assets/images/avatars/bearmod.png";
-import bearTwo from "../assets/images/logo.gif";
+import Bear from "../../public/images/avatars/Bear.png";
+import bearTwo from "../assets/images/clothing.gif";
 import sadBear from "../assets/images/sadBear.png";
 import "../pages/css/Profile.css";
 import "../../utilities.css";
@@ -17,7 +17,7 @@ import RainJacket from "../modules/clothing/RainJacket.js";
 import Umbrella from "../modules/clothing/Umbrella.js";
 import Sunglasses from "../modules/clothing/Sunglasses.js";
 import GeneralItem from "../modules/clothing/GeneralItem.js";
-// import "./Profile.css";
+import Avatar from "../modules/Avatar.js";
 
 class Profile extends Component {
   constructor(props) {
@@ -27,6 +27,7 @@ class Profile extends Component {
       geolocationAllowed: null, 
       temp: null, 
       city: null,
+      avatar: null,
       closet: {
           tops: [],
           bottoms: [],
@@ -41,6 +42,7 @@ class Profile extends Component {
     document.title = "Profile Page";
     get(`/api/user`, { userid: this.props.userId }).then((user) => this.setState(
       { user: user,
+        avatar: user.avatar,
         closet: {
           tops: user.closet.tops,
           bottoms: user.closet.bottoms,
@@ -74,8 +76,10 @@ class Profile extends Component {
             <div className = "Profile-main">
                 <h2>In {this.state.city}, it is currently {this.state.temp}°F</h2>
                 <h2>Based on your closet, we suggest wearing the following:</h2>
+                <p>fbdmflv,xl;vdxd</p>
                 <div className = "Outfit">
-                  <img src={Bear} id= "Profile-bear"/>
+                  <Avatar avatar= "GrayCat" id= "Profile-bear"/>
+                  {/* <img src={Bear} id= "Profile-bear"/> */}
                   <GeneralItem temp = {this.state.temp}/>
                   <Umbrella temp = {this.state.temp} itemInCloset = {this.state.closet.accessories} />
                   <Sunglasses temp = {this.state.temp} itemInCloset = {this.state.closet.accessories} />
@@ -101,7 +105,8 @@ class Profile extends Component {
                 <h2>Hi {this.props.userName}!</h2>
                 <h2>Click the button below to get your outfit today! </h2>
                 <p> (please allow some loading bts after pressing button) </p>
-                <div className = "Outfit">
+                <div className = "Outfit">                  
+                <Avatar avatar= "GrayCat" />
                   <img src={bearTwo} id= "Profile-bear"></img>
                 </div>
                 <WeatherSubmitButton onChange = {this.getTemp} geolocationAllowed = {this.state.geolocationAllowed}/>

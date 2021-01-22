@@ -1,6 +1,6 @@
 import GeneralItem from "./GeneralItem.js";
 import React, {Component} from "react";
-import rainJacket from "../../assets/images/clothing/rainJacket.png";
+import rainJacket from "../../../public/images/clothing/rainJacket.png";;
 import { render } from "react-dom";
 import "./GeneralItem.css";
 
@@ -16,7 +16,8 @@ class RainJacket extends GeneralItem {
     render(){
         let withinRange = (this.state.lowTemp <= this.props.temp && this.props.temp <= this.state.highTemp);
         let itemInCloset = this.props.itemInCloset.includes(String(this.constructor.name));
-        if (withinRange && itemInCloset) {            return (<> <img src={rainJacket} id= {"GeneralItem-"+String(this.constructor.name)}/><h3 id= {"GeneralItemText-"+String(this.constructor.name)}>Rain Jacket</h3> </>);
+        if (withinRange && itemInCloset) {            
+            return (<> <img src={rainJacket} id= {"GeneralItem-"+String(this.constructor.name)}/></>);
         }
         return (<></>);
     }

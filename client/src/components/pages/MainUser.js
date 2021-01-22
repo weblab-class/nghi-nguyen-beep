@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 import NavBar from "../modules/NavBar.js";
-import Bear from "../assets/images/avatars/Bear.png";
+// import Bear from "../assets/images/avatars/Bear.png";
 import "../pages/css/General.css";
 
 class MainUser extends Component {

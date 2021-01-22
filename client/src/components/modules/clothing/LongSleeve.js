@@ -1,6 +1,6 @@
 import GeneralItem from "./GeneralItem.js";
 import React, {Component} from "react";
-import longSleeve from "../../assets/images/clothing/longSleeve.png";
+import longSleeve from "../../../public/images/clothing/longSleeve.png";
 import { render } from "react-dom";
 import "./GeneralItem.css";
 
@@ -17,7 +17,7 @@ class LongSleeve extends GeneralItem {
         let withinRange = (this.state.lowTemp <= this.props.temp && this.props.temp <= this.state.highTemp);
         let itemInCloset = this.props.itemInCloset.includes(String(this.constructor.name));
         if (withinRange && itemInCloset) {
-            return (<> <img src={longSleeve} id= {"GeneralItem-"+String(this.constructor.name)}/> <h3 id= {"GeneralItemText-"+String(this.constructor.name)}>Long Sleeve</h3></>);
+            return (<> <img src={longSleeve} id= {"GeneralItem-"+String(this.constructor.name)}/></>);
         }
         return (<></>);
     }
