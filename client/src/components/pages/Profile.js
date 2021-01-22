@@ -27,7 +27,7 @@ class Profile extends Component {
       geolocationAllowed: null, 
       temp: null, 
       city: null,
-      avatar: null,
+      avatar: "",
       closet: {
           tops: [],
           bottoms: [],
@@ -78,7 +78,7 @@ class Profile extends Component {
                 <h2>Based on your closet, we suggest wearing the following:</h2>
                 <p>fbdmflv,xl;vdxd</p>
                 <div className = "Outfit">
-                  <Avatar avatar= "GrayCat" id= "Profile-bear"/>
+                  <Avatar avatar= {this.state.avatar} id= "Profile-bear"/>
                   {/* <img src={Bear} id= "Profile-bear"/> */}
                   <GeneralItem temp = {this.state.temp}/>
                   <Umbrella temp = {this.state.temp} itemInCloset = {this.state.closet.accessories} />
@@ -106,7 +106,7 @@ class Profile extends Component {
                 <h2>Click the button below to get your outfit today! </h2>
                 <p> (please allow some loading bts after pressing button) </p>
                 <div className = "Outfit">                  
-                <Avatar avatar= "GrayCat" />
+                <Avatar avatar= {this.state.avatar} />
                   <img src={bearTwo} id= "Profile-bear"></img>
                 </div>
                 <WeatherSubmitButton onChange = {this.getTemp} geolocationAllowed = {this.state.geolocationAllowed}/>

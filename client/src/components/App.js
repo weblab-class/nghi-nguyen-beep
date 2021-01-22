@@ -10,7 +10,6 @@ import Profile from "./pages/Profile.js";
 import SignedOut from "./pages/SignedOut";
 import Survey from "./pages/Survey.js";
 import ChooseAvatar from "./pages/ChooseAvatar";
-import MainUser from "./pages/MainUser.js";
 import { socket } from "../client-socket.js";
 import "./pages/App.css";
 import { get, post } from "../utilities";
@@ -94,7 +93,6 @@ class App extends Component {
             <SignedOut path="/goodbye" />
             <ChooseAvatar path="/avatar" newUser = {this.state.newUser} userId = {this.state.userId}/>
             <Survey path="/survey" newUser = {this.state.newUser} userId = {this.state.userId}/>
-            <MainUser path="/main" newUser = {this.state.newUser} userId = {this.state.userId} userName= {this.state.userName}/>
             <NotFound default />
           </Router>
           </div>
@@ -118,7 +116,6 @@ class App extends Component {
           <SignedOut path="/goodbye" />
           <ChooseAvatar path="/avatar" newUser = {this.state.newUser} userId = {this.state.userId}/>
           <Survey path="/survey" newUser = {this.state.newUser} userId = {this.state.userId}/>
-          <MainUser path="/main" newUser = {this.state.newUser} userId = {this.state.userId} userName= {this.state.userName}/>
           <NotFound default />
         </Router>
         </div>
