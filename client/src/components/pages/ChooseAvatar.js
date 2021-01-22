@@ -1,16 +1,20 @@
 import React, {Component} from "react";
 import "./Avatar.css";
-import Bear from "../../public/Bear.png";
-import Cat from "../assets/images/avatars/Cat.png";
+import Bear from "../../public/images/avatars/Bear.png";
+import CalicoCat from "../../public/images/avatars/CalicoCat.png";
+import GrayCat from "../../public/images/avatars/GrayCat.png";
+import Avatar from "../modules/Avatar.js";
 import { Router, Redirect, redirectTo, navigate } from "@reach/router";
 import AvatarSubmitButton from "../modules/AvatarSubmitButton.js";
+
 class ChooseAvatar extends Component {
     constructor(props) {
         super(props);
         this.avatarPressed = this.avatarPressed.bind();
         this.nextPressed = this.nextPressed.bind();
         this.state = {
-            avatarSelected: null
+            avatarSelected: null,
+            userId: this.props.userId,
         };
     }
 
@@ -24,38 +28,41 @@ avatarPressed = (avatar) => {
 }
 
 nextPressed = () => {
-    this.setState({nextSelected: true}, () => console.log(this.state.nextSelected));
+    this.setState({nextSelected: true});
 }
 
 render() {
     console.log("avatar", this.props);
-
-   
-        if (this.state.avatarSelected) { // next button only appears after avatar is selected
             return (
             <>
             <div className = "Profile-avatar">
-            <h2>{this.state.avatarSelected} selected</h2>
-                {/* <input type="image" src={Cat} name="cat" id="cat" onClick={() => this.avatarPressed("cat")} /> */}
-                <input type="image" src={Bear} name="bear" id="bear" onClick={() => this.avatarPressed("bear")}/>
-            </div>
-                <div className= "Profile-next">
-                    <AvatarSubmitButton avatar= {this.state}/>
+
+            {this.state.avatarSelected ? ( <h2> {this.state.avatarSelected} selected </h2>) : (<h2> Select an avatar </h2>)}
+                
+                <div id= "Bear" onClick={() => this.avatarPressed("Bear")}>
+                    <Avatar avatar="Bear"/>
                 </div>
+
+                <div id= "GrayCat" onClick={() => this.avatarPressed("Gray Cat")}>
+                    <Avatar avatar="GrayCat"/>
+                </div>
+
+                <div id= "CalicoCat" onClick={() => this.avatarPressed("Calico Cat")}>
+                    <Avatar avatar="CalicoCat"/>
+                </div>
+
+            </div>
+            
+            {this.state.avatarSelected && (
+                <div className= "Profile-next">
+                <AvatarSubmitButton avatar= {this.state} userId = {this.props.userId}/>
+            </div>
+            )}
+            
             </>
             )
-        }
-        else {
-        return (
-            <>
-            <div className = "Profile-avatar">
-                {/* <input type="image" src={Cat} name="cat" id="cat" onClick={() => this.avatarPressed("cat")} /> */}
-                <h2>Select an avatar</h2>
-                <input type="image" src={Bear} name="bear" id="bear" onClick={() => this.avatarPressed("bear")}/>   
-            </div> 
-        </>
-            )}
-        }
+        
+    }
 
 }
 export default ChooseAvatar;

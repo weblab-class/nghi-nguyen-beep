@@ -54,7 +54,16 @@ router.post("/initsocket", (req, res) => {
 // anything else falls to this "not found" case
 
 router.post("/closet", (req, res) => {
-
+  // User.findOneAndUpdate({googleid: req.body.userId},
+  //   {closet: {
+  //     tops: req.body.closet.top,
+  //     bottoms: req.body.closet.bottom,
+  //     shoes: req.body.closet.shoes,
+  //     outerwear: req.body.closet.outerwear,
+  //     accessories: req.body.closet.accessory,
+  //     }
+  //   }
+  //   ).then((user) => {res.send(user)});
   User.findByIdAndUpdate(req.body.userId,
     {closet: {
       tops: req.body.closet.top,
@@ -68,10 +77,9 @@ router.post("/closet", (req, res) => {
 });
 
 router.post("/avatar", (req, res) => {
-
-  User.findByIdAndUpdate(req.body.userId, 
-    {avatar: req.body.avatar}
-    ).then((user) => {res.send(user)});
+  User.findByIdAndUpdate(req.body.userId,
+    {avatar: req.body.avatar.avatarSelected,}
+  ).then((user) => {res.send(user)});
 });
 
 
