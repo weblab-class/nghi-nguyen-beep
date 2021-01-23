@@ -106,11 +106,13 @@ render() {
           <div className = "Survey-top">
             <ClothesButton type = "top" clothing = "Short Sleeve" name = "ShortSleeve"  picture="shirt.png" onChange={this.addItem}/>
             <ClothesButton type= "top" clothing = "Long Sleeve" name = "LongSleeve" picture="longSleeve.png" onChange={this.addItem}/>
+            <ClothesButton type= "top" clothing = "Tank Top" name = "TankTop" picture="tankTop.png" onChange={this.addItem}/>
           </div>
 
           <div className = "Survey-bottom">
             <ClothesButton type="bottom" clothing="Jeans" name = "Jeans" picture="jeans.png"  onChange={this.addItem}/>
             <ClothesButton type="bottom" clothing="Shorts" name = "Shorts" picture="shorts.png" onChange={this.addItem}/>
+            <ClothesButton type="bottom" clothing="Sweatpants" name = "Sweatpants" picture="sweatpants.png" onChange={this.addItem}/>
           </div>
 
           <div className = "Survey-shoes">
@@ -121,11 +123,16 @@ render() {
           <div className = "Survey-outerwear">
             <ClothesButton type="outerwear" clothing="Parka" name = "Parka" picture="parka.png" onChange={this.addItem}/>
             <ClothesButton type="outerwear" clothing="Rain Jacket" name = "RainJacket" picture="rainJacket.png" onChange={this.addItem}/>
+            <ClothesButton type="outerwear" clothing="Crewneck" name = "Crewneck" picture="crewneck.png" onChange={this.addItem}/>
+            <ClothesButton type="outerwear" clothing="Sweater" name = "Sweater" picture="sweater.png" onChange={this.addItem}/>
+            <ClothesButton type="outerwear" clothing="Cardigan" name = "Cardigan" picture="cardigan.png" onChange={this.addItem}/>
           </div>
 
           <div className = "Survey-accessory">
             <ClothesButton type="accessory" clothing="Sunglasses" name = "Sunglasses" picture="sunglasses.png" onChange={this.addItem}/>
             <ClothesButton type="accessory" clothing="Umbrella" name = "Umbrella" picture="umbrella.png" onChange={this.addItem}/>
+            <ClothesButton type="accessory" clothing="Hat" name = "Hat" picture="hat.png" onChange={this.addItem}/>
+            <ClothesButton type="accessory" clothing="Mittens" name = "Mittens" picture="mittens.png" onChange={this.addItem}/>
           </div>
 
 

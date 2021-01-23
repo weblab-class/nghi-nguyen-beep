@@ -14,6 +14,7 @@ render(){
 
     return (
     <> 
+    {!this.props.avatar && (<img src={Bear} id= "Avatar-Bear"/> )}  
     {this.props.avatar.split(" ").join("") === "CalicoCat" && (<img src={CalicoCat} id= "Avatar-CalicoCat"/> )}
     {this.props.avatar.split(" ").join("") === "GrayCat" && (<img src={GrayCat} id= "Avatar-GrayCat"/> )}
     {this.props.avatar.split(" ").join("") === "Bear" && (<img src={Bear} id= "Avatar-Bear"/> )}

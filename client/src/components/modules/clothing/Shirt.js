@@ -9,7 +9,7 @@ class Shirt extends GeneralItem {
         super(props);
         this.state = {
             highTemp: 90,
-            lowTemp: 60,
+            lowTemp: 55,
         };
     }
 

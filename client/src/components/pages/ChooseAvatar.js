@@ -1,10 +1,6 @@
 import React, {Component} from "react";
 import "./Avatar.css";
-import Bear from "../../public/images/avatars/Bear.png";
-import CalicoCat from "../../public/images/avatars/CalicoCat.png";
-import GrayCat from "../../public/images/avatars/GrayCat.png";
 import Avatar from "../modules/Avatar.js";
-import { Router, Redirect, redirectTo, navigate } from "@reach/router";
 import AvatarSubmitButton from "../modules/AvatarSubmitButton.js";
 
 class ChooseAvatar extends Component {
