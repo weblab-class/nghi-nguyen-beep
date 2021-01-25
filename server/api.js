@@ -92,56 +92,109 @@ router.get("/outfit", (req, res) => {
 
 function CreateOutfit(userCloset, dbCloset, temp) {
   userCloset.tops.forEach(function(element, index, array){
-        element = {
-          "clothing": element.clothing,
-          "weatherProbability": Math.abs((temp - (Math.abs(((dbCloset.tops.get(element.clothing).highTemp) + (dbCloset.tops.get(element.clothing).lowTemp)) / 2 - temp))) / temp) * 0.6,
-          "frequency": (element.frequency / 100) * 0.4
-        }
-        array[index] = element;
+    let weatherProbability = Math.abs((temp - (Math.abs(((dbCloset.tops.get(element.clothing).highTemp) + (dbCloset.tops.get(element.clothing).lowTemp)) / 2 - temp))) / temp) * 0.6;
+    let frequency = (element.frequency / 100) * 0.4;
+    element = {
+      "clothing": element.clothing,
+      "idealProbability": weatherProbability + frequency,
+      };
+      array[index] = element;
       }
     );
 
+    let topsHigh = Math.max.apply(Math, userCloset.tops.map(function(o){return o.idealProbability;}))
+    let idealTop;
+        try {
+          idealTop = userCloset.tops.find(function(o) { return o.idealProbability === topsHigh;}).clothing;
+        } catch (error) {
+          idealTop = "";
+        } 
+
     userCloset.bottoms.forEach(function(element, index, array){
+      let weatherProbability = Math.abs((temp - (Math.abs(((dbCloset.bottoms.get(element.clothing).highTemp) + (dbCloset.bottoms.get(element.clothing).lowTemp)) / 2 - temp))) / temp) * 0.6;
+      let frequency = (element.frequency / 100) * 0.4;
       element = {
         "clothing": element.clothing,
-        "weatherProbability": Math.abs((temp - (Math.abs(((dbCloset.bottoms.get(element.clothing).highTemp) + (dbCloset.bottoms.get(element.clothing).lowTemp)) / 2 - temp))) / temp) * 0.6,
-        "frequency": (element.frequency / 100) * 0.4
-      }
-      array[index] = element;
-    }
-  );
+        "idealProbability": weatherProbability + frequency,
+        };
+        array[index] = element;
+        }
+      );
+  
+      let bottomsHigh = Math.max.apply(Math, userCloset.bottoms.map(function(o){return o.idealProbability;}))
+      let idealBottoms;
+      try {
+        idealBottoms = userCloset.bottoms.find(function(o) { return o.idealProbability === bottomsHigh;}).clothing;
+      } catch (error) {
+        idealBottoms = "";
+      } 
 
-  userCloset.shoes.forEach(function(element, index, array){
-    element = {
-      "clothing": element.clothing,
-      "weatherProbability": Math.abs((temp - (Math.abs(((dbCloset.shoes.get(element.clothing).highTemp) + (dbCloset.shoes.get(element.clothing).lowTemp)) / 2 - temp))) / temp) * 0.6,
-      "frequency": (element.frequency / 100) * 0.4
-    }
-    array[index] = element;
+      userCloset.shoes.forEach(function(element, index, array){
+        let weatherProbability = Math.abs((temp - (Math.abs(((dbCloset.shoes.get(element.clothing).highTemp) + (dbCloset.shoes.get(element.clothing).lowTemp)) / 2 - temp))) / temp) * 0.6;
+        let frequency = (element.frequency / 100) * 0.4;
+        element = {
+          "clothing": element.clothing,
+          "idealProbability": weatherProbability + frequency,
+          };
+          array[index] = element;
+          }
+        );
+    
+        let shoesHigh = Math.max.apply(Math, userCloset.shoes.map(function(o){return o.idealProbability;}))
+        let idealShoes;
+        try {
+          idealShoes = userCloset.shoes.find(function(o) { return o.idealProbability === shoesHigh;}).clothing;
+        } catch (error) {
+          idealShoes = "";
+        }      
+
+      userCloset.outerwear.forEach(function(element, index, array){
+        let weatherProbability = Math.abs((temp - (Math.abs(((dbCloset.outerwear.get(element.clothing).highTemp) + (dbCloset.outerwear.get(element.clothing).lowTemp)) / 2 - temp))) / temp) * 0.6;
+        let frequency = (element.frequency / 100) * 0.4;
+        element = {
+          "clothing": element.clothing,
+          "idealProbability": weatherProbability + frequency,
+          };
+          array[index] = element;
+          }
+        );
+    
+        let outerwearHigh = Math.max.apply(Math, userCloset.outerwear.map(function(o){return o.idealProbability;}))
+        let idealOuterwear;
+        try {
+          idealOuterwear = userCloset.outerwear.find(function(o) { return o.idealProbability === outerwearHigh;}).clothing;
+        } catch (error) {
+          idealOuterwear = "";
+        }  
+
+        userCloset.accessories.forEach(function(element, index, array){
+          let weatherProbability = Math.abs((temp - (Math.abs(((dbCloset.accessories.get(element.clothing).highTemp) + (dbCloset.accessories.get(element.clothing).lowTemp)) / 2 - temp))) / temp) * 0.6;
+          let frequency = (element.frequency / 100) * 0.4;
+          element = {
+            "clothing": element.clothing,
+            "idealProbability": weatherProbability + frequency,
+            };
+            array[index] = element;
+            }
+          );
+      
+          let accessoriesHigh = Math.max.apply(Math, userCloset.accessories.map(function(o){return o.idealProbability;}))
+          let idealAccessories;
+          try {
+            idealAccessories = userCloset.accessories.find(function(o) { return o.idealProbability === accessoriesHigh; }).clothing;
+          } catch (error) {
+            idealAccessories = "";
+          }
+  
+
+
+  return {
+    tops: idealTop,
+    bottoms: idealBottoms,
+    shoes: idealShoes,
+    outerwear:  idealOuterwear,
+    accessories: idealAccessories
   }
-);
-
-userCloset.outerwear.forEach(function(element, index, array){
-  element = {
-    "clothing": element.clothing,
-    "weatherProbability": Math.abs((temp - (Math.abs(((dbCloset.outerwear.get(element.clothing).highTemp) + (dbCloset.outerwear.get(element.clothing).lowTemp)) / 2 - temp))) / temp) * 0.6,
-    "frequency": (element.frequency / 100) * 0.4
-  }
-  array[index] = element;
-}
-);
-
-userCloset.accessories.forEach(function(element, index, array){
-  element = {
-    "clothing": element.clothing,
-    "weatherProbability": Math.abs((temp - (Math.abs(((dbCloset.accessories.get(element.clothing).highTemp) + (dbCloset.accessories.get(element.clothing).lowTemp)) / 2 - temp))) / temp) * 0.6,
-    "frequency": (element.frequency / 100) * 0.4
-  }
-  array[index] = element;
-}
-);
-
-  return userCloset;
 
 }
 
