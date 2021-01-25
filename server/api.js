@@ -60,7 +60,6 @@ router.post("/initsocket", (req, res) => {
 
 router.post("/closet", (req, res) => {
   console.log(req.body);
-
   User.findByIdAndUpdate(req.body.userId,
     {closet: {
       tops: req.body.closet.top,
@@ -82,7 +81,7 @@ router.post("/avatar", (req, res) => {
 router.get("/outfit", (req, res) => {
   User.findById(req.user._id).then((user) => {
     new Promise((resolve, reject) => {
-      Closet.findById("600c8794efe38f2877ec0acc").then((dbCloset) => resolve(CreateOutfit(user.closet, dbCloset)))})
+      Closet.findById("600c8794efe38f2877ec0acc").then((dbCloset) => resolve(CreateOutfit(user.closet, dbCloset, req.query.temp)))})
       .then((result) => res.send(result))
       .catch( () => {(err) => console.log("dkjsfsm error in promise", err)});})
     .catch( function (err) {
@@ -91,37 +90,56 @@ router.get("/outfit", (req, res) => {
     );  
 });
 
-function CreateOutfit(userCloset, dbCloset) {
+function CreateOutfit(userCloset, dbCloset, temp) {
+  userCloset.tops.forEach(function(element, index, array){
+        element = {
+          "clothing": element.clothing,
+          "weatherProbability": Math.abs((temp - (Math.abs(((dbCloset.tops.get(element.clothing).highTemp) + (dbCloset.tops.get(element.clothing).lowTemp)) / 2 - temp))) / temp) * 0.6,
+          "frequency": (element.frequency / 100) * 0.4
+        }
+        array[index] = element;
+      }
+    );
 
-  userCloset.tops.forEach( element => userCloset.tops.set(element, {
-    "averageTemp": ((dbCloset.tops.get(element.clothing).highTemp) + (dbCloset.tops.get(element.clothing).lowTemp)) / 2,
-    "frequency": element.frequency,
-    })
+    userCloset.bottoms.forEach(function(element, index, array){
+      element = {
+        "clothing": element.clothing,
+        "weatherProbability": Math.abs((temp - (Math.abs(((dbCloset.bottoms.get(element.clothing).highTemp) + (dbCloset.bottoms.get(element.clothing).lowTemp)) / 2 - temp))) / temp) * 0.6,
+        "frequency": (element.frequency / 100) * 0.4
+      }
+      array[index] = element;
+    }
   );
 
-  userCloset.bottoms.forEach( element => userCloset.bottoms.set(element, {
-    "averageTemp": ((dbCloset.bottoms.get(element.clothing).highTemp) + (dbCloset.bottoms.get(element.clothing).lowTemp)) / 2,
-    "frequency": element.frequency,
-    })
-  );
+  userCloset.shoes.forEach(function(element, index, array){
+    element = {
+      "clothing": element.clothing,
+      "weatherProbability": Math.abs((temp - (Math.abs(((dbCloset.shoes.get(element.clothing).highTemp) + (dbCloset.shoes.get(element.clothing).lowTemp)) / 2 - temp))) / temp) * 0.6,
+      "frequency": (element.frequency / 100) * 0.4
+    }
+    array[index] = element;
+  }
+);
 
-  userCloset.shoes.forEach( element => userCloset.shoes.set(element, {
-    "averageTemp": ((dbCloset.shoes.get(element.clothing).highTemp) + (dbCloset.shoes.get(element.clothing).lowTemp)) / 2,
-    "frequency": element.frequency,
-    })
-  );
+userCloset.outerwear.forEach(function(element, index, array){
+  element = {
+    "clothing": element.clothing,
+    "weatherProbability": Math.abs((temp - (Math.abs(((dbCloset.outerwear.get(element.clothing).highTemp) + (dbCloset.outerwear.get(element.clothing).lowTemp)) / 2 - temp))) / temp) * 0.6,
+    "frequency": (element.frequency / 100) * 0.4
+  }
+  array[index] = element;
+}
+);
 
-  userCloset.outerwear.forEach( element => userCloset.outerwear.set(element, {
-    "averageTemp": ((dbCloset.outerwear.get(element.clothing).highTemp) + (dbCloset.outerwear.get(element.clothing).lowTemp)) / 2,
-    "frequency": element.frequency,
-    })
-  );
-
-  userCloset.accessories.forEach( element => userCloset.accessories.set(element, {
-    "averageTemp": ((dbCloset.accessories.get(element.clothing).highTemp) + (dbCloset.accessories.get(element.clothing).lowTemp)) / 2,
-    "frequency": element.frequency,
-    })
-  );
+userCloset.accessories.forEach(function(element, index, array){
+  element = {
+    "clothing": element.clothing,
+    "weatherProbability": Math.abs((temp - (Math.abs(((dbCloset.accessories.get(element.clothing).highTemp) + (dbCloset.accessories.get(element.clothing).lowTemp)) / 2 - temp))) / temp) * 0.6,
+    "frequency": (element.frequency / 100) * 0.4
+  }
+  array[index] = element;
+}
+);
 
   return userCloset;
 

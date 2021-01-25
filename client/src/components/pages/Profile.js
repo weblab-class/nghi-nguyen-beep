@@ -46,14 +46,23 @@ class Profile extends Component {
   }
   componentDidMount() {
     document.title = "Profile Page";
-    get('/api/outfit').then((api) => {console.log("api", api)});
+    // get('/api/outfit').then((api) => {console.log("api", api)});
     (navigator.geolocation) ? this.setState({geolocationAllowed : true}) : this.setState({geolocationAllowed : false});
   }
 
   getTemp = (obj) => {
     console.log(obj);
     if (obj.geolocationAllowed) {
-      this.setState({temp: obj.temp, city: obj.city, loading: false, geolocationAllowed: true});
+      this.setState({temp: obj.temp, city: obj.city, loading: false, geolocationAllowed: true}, () => {
+        get('/api/outfit', {"temp": this.state.temp}).then((api) => {this.setState({
+          closet: {
+            tops: api.tops,
+            bottoms: api.bottoms, 
+            shoes: api.shoes,
+            outerwear: api.outerwear,
+            accessories: api.accessories }
+          }, () => console.log(this.state))})
+        });
     }
     else{
       this.setState({geolocationAllowed: false});
