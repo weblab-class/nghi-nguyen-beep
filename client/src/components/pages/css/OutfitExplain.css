@@ -1,0 +1,39 @@
+/** {*/
+    /*box-sizing: border-box;*/
+/*}*/
+
+.wrapper {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    transition: margin .5s;
+    margin: 10px 10px 10px -250px;
+}
+
+.wrapper.is-nav-open {
+    margin-left: 0;
+}
+
+.nav {
+    position: relative;
+    width: 250px;
+    height: 100%;
+    padding: 20px;
+    border-right: 1px solid #ccc;
+}
+
+.nav__icon {
+    position: absolute;
+    top: 0;
+    right: -60px;
+    padding: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color .3s;
+    /* background-image: url('../../assets/images/wavingTwo.gif'); */
+}
+
+.nav__icon:hover {
+    color: #5eb2ff;
+}

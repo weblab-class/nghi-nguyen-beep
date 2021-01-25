@@ -24,7 +24,7 @@ import TankTop from "../modules/clothing/TankTop.js";
 import Cardigan from "../modules/clothing/Cardigan.js";
 import GeneralItem from "../modules/clothing/GeneralItem.js";
 import Avatar from "../modules/Avatar.js";
-
+import OutfitExplain from "./OutfitExplain.js";
 class Profile extends Component {
   constructor(props) {
     super(props);
@@ -46,17 +46,7 @@ class Profile extends Component {
   }
   componentDidMount() {
     document.title = "Profile Page";
-    get(`/api/user`, { userid: this.props.userId }).then((user) => this.setState(
-      { user: user,
-        avatar: user.avatar,
-        closet: {
-          tops: user.closet.tops,
-          bottoms: user.closet.bottoms,
-          shoes: user.closet.shoes,
-          outerwear: user.closet.outerwear,
-          accessories: user.closet.accessories,
-        }
-      }));
+    get('/api/outfit').then((api) => {console.log("api", api)});
     (navigator.geolocation) ? this.setState({geolocationAllowed : true}) : this.setState({geolocationAllowed : false});
   }
 
@@ -70,10 +60,8 @@ class Profile extends Component {
     }
   }
 
-  getOutfit = () => {}
-
+ 
   render() {
-    // console.log("profile", this.props, this.state);
     if (this.state.geolocationAllowed){
       if (this.state.city) { 
         return (
@@ -81,12 +69,11 @@ class Profile extends Component {
             <div className = "Profile-main">
                 <h2>In {this.state.city}, it is currently {this.state.temp}°F</h2>
                 <h2>Based on your closet, we suggest wearing the following:</h2>
-                <p>{this.state.closet.bottoms}</p>
                 <div className = "Outfit">
                   <Avatar avatar= {this.state.avatar} id= "Profile-bear"/>
                   {/* <img src={Bear} id= "Profile-bear"/> */}
                   <GeneralItem temp = {this.state.temp}/>
-                  <Umbrella temp = {this.state.temp} itemInCloset = {this.state.closet.accessories} />
+                  {/* <Umbrella temp = {this.state.temp} itemInCloset = {this.state.closet.accessories} />
                   <Sunglasses temp = {this.state.temp} itemInCloset = {this.state.closet.accessories} />
                   <Mittens temp = {this.state.temp} itemInCloset = {this.state.closet.accessories} />
                   <Hat temp = {this.state.temp} itemInCloset = {this.state.closet.accessories} />
@@ -105,9 +92,9 @@ class Profile extends Component {
                   <Cardigan temp = {this.state.temp} itemInCloset = {this.state.closet.outerwear} />
                   <Crewneck temp = {this.state.temp} itemInCloset = {this.state.closet.outerwear} />
                   <RainJacket temp = {this.state.temp} itemInCloset = {this.state.closet.outerwear} />
-                  <Parka temp = {this.state.temp} itemInCloset = {this.state.closet.outerwear}/>
+                  <Parka temp = {this.state.temp} itemInCloset = {this.state.closet.outerwear}/> */}
                 </div>
-                <WeatherSubmitButton onChange = {this.getTemp} geolocationAllowed = {this.state.geolocationAllowed}/>
+                <WeatherSubmitButton onChange = {this.getTemp} userId = {this.props.userId} geolocationAllowed = {this.state.geolocationAllowed}/>
             </div>
           </>
         );
@@ -116,6 +103,7 @@ class Profile extends Component {
       else { 
         return (
             <>
+            <OutfitExplain/>
             <div className = "Profile-main">
                 <h2>Hi {this.props.userName}!</h2>
                 <h2>Click the button below to get your outfit today! </h2>
@@ -124,7 +112,7 @@ class Profile extends Component {
                 <Avatar avatar= {this.state.avatar} />
                   <img src={bearTwo} id= "Profile-bear"></img>
                 </div>
-                <WeatherSubmitButton onChange = {this.getTemp} geolocationAllowed = {this.state.geolocationAllowed}/>
+                <WeatherSubmitButton onChange = {this.getTemp} userId = {this.props.userId} geolocationAllowed = {this.state.geolocationAllowed}/>
             </div>
             </>
           );
@@ -134,13 +122,14 @@ class Profile extends Component {
     else {
       return(
         <>
+        <OutfitExplain/>
           <div className = "Profile-main">
               <h2>Hmm. I can't seem to access your location</h2>
               <p>Allow location access to get your outfit, then refresh site!</p>
               <div className = "Outfit">
                 <img src={sadBear} id= "Profile-bear"></img>
               </div>
-              <WeatherSubmitButton onChange = {this.getTemp} geolocationAllowed = {this.state.geolocationAllowed}/>
+              <WeatherSubmitButton onChange = {this.getTemp} userId = {this.props.userId} geolocationAllowed = {this.state.geolocationAllowed}/>
           </div>
           </>
       );

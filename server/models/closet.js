@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
 const ClosetSchema = new mongoose.Schema({
-  tops: Array,
-  bottom: Array,
-  shoes: Array,
-  outerwear: Array,
-  accessory: Array,
+  tops: Map,
+  bottoms: Map,
+  shoes: Map,
+  outerwear: Map,
+  accessories: Map,
   
 });
 

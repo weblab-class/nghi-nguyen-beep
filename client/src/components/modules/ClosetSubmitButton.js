@@ -16,7 +16,7 @@ componentDidMount() {
 
 
 saveCloset = (body) => {
-    console.log("closet body", body);
+    console.log("closet body", body, typeof(body), body.closet.top, typeof(body.closet.top));
     post("/api/closet", body).then(navigate("/profile/"+String(this.props.userId)));
 
 

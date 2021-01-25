@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import { get, post } from "../../utilities.js";
 import { socket } from "../../client-socket.js";
 import { Link, Router, Redirect, redirectTo } from "@reach/router";
-
+import OutfitGenerator from "./OutfitGenerator.js";
 const WEATHER_API_KEY = "962492a57a2e84bd0413d49ba0e0c506";
 
 class WeatherSubmitButton extends Component {
@@ -55,12 +55,13 @@ getWeather = () => {
     .then(data => this.setState({
         city: data.name,
         temp: data.main.temp
-    }, () => 
-    {
+    }))
+    // .then(get("api/outfit", {"temp": this.state.temp}), (err) => {console.log(" weather submit errors", err)})
+    .then(() => {
         if (this.props.onChange) {
             this.props.onChange(this.state);
         }
-    }));
+    })
   }
 
 
@@ -68,7 +69,7 @@ render() {
     if (this.props.geolocationAllowed) {
         return (
         <>
-        <button type="submit" onClick= {() => this.getCoordinates()} value={this.props.clothing}>Submit</button>
+        <button onClick= {() => this.getCoordinates()} temp= {this.state.temp}>Submit</button>
         </>
         )
         }

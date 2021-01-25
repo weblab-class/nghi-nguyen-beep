@@ -16,14 +16,10 @@ componentDidMount() {
 
 
 saveAvatar = (body) => {
-    // navigate("/survey");
-    console.log("avatar body", body);
     post("/api/avatar", body).then(navigate("/survey"));
   };
 
 render() {
-    
-        console.log("avatar", this.props)
         return (
         <>
         <button type="submit" onClick= {() => this.saveAvatar(this.props)}>Submit</button>

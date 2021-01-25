@@ -18,6 +18,8 @@ class General extends Component {
     render() {
         return (
             <>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
             {this.props.userName ? (
                 <div className = "General-main">
                     <h2>Welcome</h2>
@@ -27,11 +29,12 @@ class General extends Component {
                 </div>
             ) : (
                 <>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
                 <div className = "General-main">
-                    <img src={Title} id= "General-bear-gif"></img>
+                    <img className="animate__animated animate__fadeIn" src={Title} id= "General-bear-gif"></img>
                 </div>
-                </>
-            )}
+                </> 
+            )} 
             </>
         )
         

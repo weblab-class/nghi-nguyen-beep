@@ -28,7 +28,6 @@ nextPressed = () => {
 }
 
 render() {
-    console.log("avatar", this.props);
             return (
             <>
             <div className = "Profile-avatar">

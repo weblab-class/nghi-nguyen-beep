@@ -76,7 +76,7 @@ class App extends Component {
 
   render() {
     console.log("app", this.state);
-    if (this.state.newUser) {
+
       return (
         <>
         <div className="mainPage" >
@@ -98,29 +98,7 @@ class App extends Component {
           </div>
         </>
       );
-    }
-
-    return (
-      <>
-      <div className="mainPage" >
-      <NavBar
-        handleLogin={this.handleLogin}
-        handleLogout={this.handleLogout}
-        userId={this.state.userId}
-        userName={this.state.userName}
-      />
-        <Router>
-          <General path="/" userName= {this.state.userName}/>
-          <About path="/about"/>
-          <Profile path="/profile/:userId" userName= {this.state.userName} userId = {this.state.userId}/>
-          <SignedOut path="/goodbye" />
-          <ChooseAvatar path="/avatar" newUser = {this.state.newUser} userId = {this.state.userId}/>
-          <Survey path="/survey" newUser = {this.state.newUser} userId = {this.state.userId}/>
-          <NotFound default />
-        </Router>
-        </div>
-      </>
-    );
+    
   }
 }
 
