@@ -3,9 +3,9 @@
 }
 [id*="GeneralItem-"]{
     position: absolute;
-    padding: 2%;
-    max-width: 40vw;
-    max-height: 40vh;
+    padding: 1%;
+    max-width: 45vw;
+    max-height: 45vh;
     width: auto;
     height: auto;
 }

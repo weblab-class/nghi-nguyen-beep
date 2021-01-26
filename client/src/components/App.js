@@ -45,28 +45,10 @@ class App extends Component {
   handleLogin = (res) => {
     console.log(`Logged in as ${res.profileObj.name}`);
     const userToken = res.tokenObj.id_token;
-
-    if (this.state.newUser) {
       post("/api/login", { token: userToken }).then((user) => {
-        this.setState({ isLoggedOut:false, userId: user._id, userName: user.name}, () => navigate("/"));
+        this.setState({ isLoggedOut: false, userId: user._id, userName: user.name}, () => navigate("/"));
         post("/api/initsocket", { socketid: socket.id });
-
       });
-    }
-
-    else {
-      post("/api/login", { token: userToken }).then((user) => {
-        this.setState({ userId: user._id, userName: user.name, newUser: false}, () => navigate("/"));
-        post("/api/initsocket", { socketid: socket.id });
-
-      });
-    }
-
-    // post("/api/login", { token: userToken }).then((user) => {
-    //   this.setState({ userId: user._id, userName: user.name});
-    //   post("/api/initsocket", { socketid: socket.id });
-
-    // });
   };
 
   handleLogout = () => {
@@ -87,12 +69,12 @@ class App extends Component {
           userName={this.state.userName}
         />
           <Router>
-            <General path="/" userName= {this.state.userName} userId = {this.state.userId}/>
+            <General path="/" isLoggedOut= {this.state.isLoggedOut} userName= {this.state.userName} userId = {this.state.userId}/>
             <About path="/about"/>
-            <Profile path="/profile/:userId" userName= {this.state.userName} userId = {this.state.userId}/>
+            <Profile path="/profile/:userId" isLoggedOut= {this.state.isLoggedOut} userName= {this.state.userName} userId = {this.state.userId}/>
             <SignedOut path="/goodbye" />
-            <ChooseAvatar path="/avatar" newUser = {this.state.newUser} userId = {this.state.userId}/>
-            <Survey path="/survey" newUser = {this.state.newUser} userId = {this.state.userId}/>
+            <ChooseAvatar path="/avatar" isLoggedOut= {this.state.isLoggedOut} newUser = {this.state.newUser} userId = {this.state.userId}/>
+            <Survey path="/survey" isLoggedOut= {this.state.isLoggedOut} newUser = {this.state.newUser} userId = {this.state.userId}/>
             <NotFound default />
           </Router>
           </div>

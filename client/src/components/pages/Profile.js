@@ -25,6 +25,8 @@ import Cardigan from "../modules/clothing/Cardigan.js";
 import GeneralItem from "../modules/clothing/GeneralItem.js";
 import Avatar from "../modules/Avatar.js";
 import OutfitExplain from "./OutfitExplain.js";
+import { navigate } from "@reach/router";
+
 class Profile extends Component {
   constructor(props) {
     super(props);
@@ -44,9 +46,15 @@ class Profile extends Component {
       loading: null,
     };
   }
+  
+
   componentDidMount() {
-    document.title = "Profile Page";
-    // get('/api/outfit').then((api) => {console.log("api", api)});
+    get("/api/accessDenied", {isLoggedOut: this.props.isLoggedOut}).then((res) => {
+      if (res.msg === "denied") {
+        navigate("/");
+      }
+    });
+
     (navigator.geolocation) ? this.setState({geolocationAllowed : true}) : this.setState({geolocationAllowed : false});
   }
 
@@ -75,33 +83,39 @@ class Profile extends Component {
       if (this.state.city) { 
         return (
           <>
+          <OutfitExplain/>
             <div className = "Profile-main">
                 <h2>In {this.state.city}, it is currently {this.state.temp}°F</h2>
                 <h2>Based on your closet, we suggest wearing the following:</h2>
+  
+                 <p>{this.state.closet.tops}   {this.state.closet.bottoms}   {this.state.closet.shoes}   {this.state.closet.outerwear}   {this.state.closet.accessories}</p>
+              
                 <div className = "Outfit">
                   <Avatar avatar= {this.state.avatar} id= "Profile-bear"/>
-                  {/* <img src={Bear} id= "Profile-bear"/> */}
+
                   <GeneralItem temp = {this.state.temp}/>
-                  {/* <Umbrella temp = {this.state.temp} itemInCloset = {this.state.closet.accessories} />
-                  <Sunglasses temp = {this.state.temp} itemInCloset = {this.state.closet.accessories} />
-                  <Mittens temp = {this.state.temp} itemInCloset = {this.state.closet.accessories} />
-                  <Hat temp = {this.state.temp} itemInCloset = {this.state.closet.accessories} />
 
-                  <Jeans temp = {this.state.temp} itemInCloset = {this.state.closet.bottoms} />
-                  <Sweatpants temp = {this.state.temp} itemInCloset = {this.state.closet.bottoms} />
-                  <Shorts temp = {this.state.temp} itemInCloset = {this.state.closet.bottoms} />
+                  <Umbrella itemInCloset = {this.state.closet.accessories} />
+                  <Sunglasses itemInCloset = {this.state.closet.accessories} />
+                  <Mittens itemInCloset = {this.state.closet.accessories} />
+                  <Hat itemInCloset = {this.state.closet.accessories} />
 
-                  <Sneakers temp = {this.state.temp} itemInCloset = {this.state.closet.shoes} />
-                  <RainBoots temp = {this.state.temp} itemInCloset = {this.state.closet.shoes} />
+                  <Jeans itemInCloset = {this.state.closet.bottoms} />
+                  <Sweatpants itemInCloset = {this.state.closet.bottoms} />
+                  <Shorts itemInCloset = {this.state.closet.bottoms} />
 
-                  <Shirt temp = {this.state.temp} itemInCloset = {this.state.closet.tops} />
-                  <TankTop temp = {this.state.temp} itemInCloset = {this.state.closet.tops} />
-                  <LongSleeve temp = {this.state.temp} itemInCloset = {this.state.closet.tops} />
+                  <Sneakers itemInCloset = {this.state.closet.shoes} />
+                  <RainBoots itemInCloset = {this.state.closet.shoes} />
+
+                  <Shirt itemInCloset = {this.state.closet.tops} />
+                  <TankTop itemInCloset = {this.state.closet.tops} />
+                  <LongSleeve itemInCloset = {this.state.closet.tops} />
                   
-                  <Cardigan temp = {this.state.temp} itemInCloset = {this.state.closet.outerwear} />
-                  <Crewneck temp = {this.state.temp} itemInCloset = {this.state.closet.outerwear} />
-                  <RainJacket temp = {this.state.temp} itemInCloset = {this.state.closet.outerwear} />
-                  <Parka temp = {this.state.temp} itemInCloset = {this.state.closet.outerwear}/> */}
+                  <Sweater itemInCloset = {this.state.closet.outerwear}/>
+                  <Cardigan itemInCloset = {this.state.closet.outerwear} />
+                  <Crewneck itemInCloset = {this.state.closet.outerwear} />
+                  <RainJacket itemInCloset = {this.state.closet.outerwear} />
+                  <Parka itemInCloset = {this.state.closet.outerwear}/>
                 </div>
                 <WeatherSubmitButton onChange = {this.getTemp} userId = {this.props.userId} geolocationAllowed = {this.state.geolocationAllowed}/>
             </div>

@@ -238,6 +238,15 @@ function CreateCloset() {
     return newCloset.save();
 }
 
+router.get("/accessDenied", (req, res) => {
+  console.log(typeof(req.query.isLoggedOut));
+  if (req.query.isLoggedOut === "false") {
+    console.log("a");
+    res.send({msg: "approved"});
+  }
+  console.log("d");
+  res.send({msg: "denied"});
+});
 
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);

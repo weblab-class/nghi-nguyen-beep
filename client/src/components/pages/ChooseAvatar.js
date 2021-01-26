@@ -2,6 +2,9 @@ import React, {Component} from "react";
 import "./Avatar.css";
 import Avatar from "../modules/Avatar.js";
 import AvatarSubmitButton from "../modules/AvatarSubmitButton.js";
+import { navigate } from "@reach/router";
+import { get } from "../../utilities";
+
 
 class ChooseAvatar extends Component {
     constructor(props) {
@@ -16,7 +19,11 @@ class ChooseAvatar extends Component {
 
 
 componentDidMount() {
-    document.title = "Avatar";
+    get("/api/accessDenied", {isLoggedOut: this.props.isLoggedOut}).then((res) => {
+        if (res.msg === "denied") {
+          navigate("/");
+        }
+      });
 }
 
 avatarPressed = (avatar) => {

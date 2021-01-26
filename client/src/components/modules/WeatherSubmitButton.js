@@ -40,11 +40,6 @@ getCoordinates  = async () => {
             }
         })
     );
-
-    // navigator.geolocation.getCurrentPosition( ( function(position) {
-    // console.log(position.coords.longitude, position.coords.latitude);
-    // this.setState({longitude: position.coords.longitude, latitude: position.coords.latitude}, console.log("after setting state", this.state));
-    // })); 
     
 }
 

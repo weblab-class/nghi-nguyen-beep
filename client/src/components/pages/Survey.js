@@ -1,7 +1,10 @@
 import React, {Component} from "react";
 import "./css/Survey.css";
+import { get } from "../../utilities";
 import ClothesButton from "../modules/ClothesButton.js";
 import ClosetSubmitButton from "../modules/ClosetSubmitButton.js";
+import { navigate } from "@reach/router";
+
 class Survey extends Component {
     constructor(props) {
         super(props);
@@ -17,7 +20,11 @@ class Survey extends Component {
 
 
 componentDidMount() {
-    document.title = "Survey";
+  get("/api/accessDenied", {isLoggedOut: this.props.isLoggedOut}).then((res) => {
+    if (res.msg === "denied") {
+      navigate("/");
+    }
+  });
 }
 
 
