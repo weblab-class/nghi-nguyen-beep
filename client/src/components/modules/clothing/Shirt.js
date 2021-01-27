@@ -14,8 +14,8 @@ class Shirt extends GeneralItem {
     }
 
     render(){
-        let itemInCloset = this.props.itemInCloset;
-        if (itemInCloset === String(this.constructor.name)) {
+        // console.log("i", itemInCloset, "ii", this.constructor.name, "iii", typeof(itemInCloset), "iiii", typeof(this.constructor.name), "iiiii", typeof(String(this.constructor.name)));
+        if (this.props.itemInCloset) {
             return (<> <img src={shirt} id= {"GeneralItem-"+String(this.constructor.name)}/></>);
         }
         return (<></>);

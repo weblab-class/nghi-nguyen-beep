@@ -28,6 +28,7 @@ function getOrCreateUser(user) {
       name: user.name,
       googleid: user.sub,
       avatar: "Bear",
+      newuser: true,
       closet: {
         tops: [],
         bottoms: [],

@@ -27,6 +27,7 @@ const { updateMany } = require("./models/user");
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
 router.get("/whoami", (req, res) => {
+  console.log(req, req.user);
   if (!req.user) {
     
     res.send({});
@@ -35,15 +36,26 @@ router.get("/whoami", (req, res) => {
   res.send(req.user);
 });
 
+router.get("/accessDenied", (req, res) => {
+  if (!req.user) {   
+    res.send({msg: "denied"});
+  }
+  res.send({msg: "approved"});
+});
+
 router.get("/user", (req, res) => {
-  // console.log(req.user);
-  User.findById(req.user._id).then((user) => {
-    res.send(user);
-  }).catch(
-    function (err) {
-      console.log("error at api/user ", err)
-    }
-  );
+  if (req.user){
+    User.findById(req.user._id).then((user) => {
+      res.send(user);
+    }).catch(
+      function (err) {
+        res.send({});      }
+    );
+  }
+
+  else {
+    res.send({});
+  }
 });
 
 router.post("/initsocket", (req, res) => {
@@ -59,7 +71,7 @@ router.post("/initsocket", (req, res) => {
 // anything else falls to this "not found" case
 
 router.post("/closet", (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   User.findByIdAndUpdate(req.body.userId,
     {closet: {
       tops: req.body.closet.top,
@@ -78,6 +90,14 @@ router.post("/avatar", (req, res) => {
   ).then((user) => {res.send(user)});
 });
 
+router.post("/changeUserStatus", (req, res) => {
+  // console.log(req.body);
+  User.findByIdAndUpdate(req.body.userId,
+    {newuser: false
+    }
+  ).then((user) => {res.send(user)});
+});
+
 router.get("/outfit", (req, res) => {
   User.findById(req.user._id).then((user) => {
     new Promise((resolve, reject) => {
@@ -89,6 +109,9 @@ router.get("/outfit", (req, res) => {
       }
     );  
 });
+
+
+
 
 function CreateOutfit(userCloset, dbCloset, temp) {
   userCloset.tops.forEach(function(element, index, array){
@@ -107,7 +130,7 @@ function CreateOutfit(userCloset, dbCloset, temp) {
         try {
           idealTop = userCloset.tops.find(function(o) { return o.idealProbability === topsHigh;}).clothing;
         } catch (error) {
-          idealTop = "";
+          idealTop = [];
         } 
 
     userCloset.bottoms.forEach(function(element, index, array){
@@ -126,7 +149,7 @@ function CreateOutfit(userCloset, dbCloset, temp) {
       try {
         idealBottoms = userCloset.bottoms.find(function(o) { return o.idealProbability === bottomsHigh;}).clothing;
       } catch (error) {
-        idealBottoms = "";
+        idealBottoms = [];
       } 
 
       userCloset.shoes.forEach(function(element, index, array){
@@ -145,7 +168,7 @@ function CreateOutfit(userCloset, dbCloset, temp) {
         try {
           idealShoes = userCloset.shoes.find(function(o) { return o.idealProbability === shoesHigh;}).clothing;
         } catch (error) {
-          idealShoes = "";
+          idealShoes = [];
         }      
 
       userCloset.outerwear.forEach(function(element, index, array){
@@ -164,7 +187,7 @@ function CreateOutfit(userCloset, dbCloset, temp) {
         try {
           idealOuterwear = userCloset.outerwear.find(function(o) { return o.idealProbability === outerwearHigh;}).clothing;
         } catch (error) {
-          idealOuterwear = "";
+          idealOuterwear = [];
         }  
 
         userCloset.accessories.forEach(function(element, index, array){
@@ -183,7 +206,7 @@ function CreateOutfit(userCloset, dbCloset, temp) {
           try {
             idealAccessories = userCloset.accessories.find(function(o) { return o.idealProbability === accessoriesHigh; }).clothing;
           } catch (error) {
-            idealAccessories = "";
+            idealAccessories = [];
           }
   
 
@@ -238,15 +261,7 @@ function CreateCloset() {
     return newCloset.save();
 }
 
-router.get("/accessDenied", (req, res) => {
-  console.log(typeof(req.query.isLoggedOut));
-  if (req.query.isLoggedOut === "false") {
-    console.log("a");
-    res.send({msg: "approved"});
-  }
-  console.log("d");
-  res.send({msg: "denied"});
-});
+
 
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);

@@ -4,6 +4,7 @@ const UserSchema = new mongoose.Schema({
   name: String,
   googleid: String,
   avatar: String,
+  newuser: Boolean,
   closet: {
     tops: Array,
     bottoms: Array,

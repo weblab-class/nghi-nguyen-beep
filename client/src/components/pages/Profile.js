@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { get } from "../../utilities";
+import { get, post } from "../../utilities";
 import bearTwo from "../assets/images/clothing.gif";
 import sadBear from "../assets/images/sadBear.png";
 import "../pages/css/Profile.css";
@@ -37,11 +37,11 @@ class Profile extends Component {
       city: null,
       avatar: "",
       closet: {
-          tops: [],
-          bottoms: [],
-          shoes: [],
-          outerwear: [],
-          accessories: []
+          tops: "",
+          bottoms: "",
+          shoes: "",
+          outerwear: "",
+          accessories: ""
       },
       loading: null,
     };
@@ -49,11 +49,14 @@ class Profile extends Component {
   
 
   componentDidMount() {
-    get("/api/accessDenied", {isLoggedOut: this.props.isLoggedOut}).then((res) => {
+    get("/api/accessDenied", {userId: this.props.userId})
+    .then((res) => {
       if (res.msg === "denied") {
         navigate("/");
       }
-    });
+    }).then(
+      post("/api/changeUserStatus", {userId: this.props.userId})
+      ).catch( (err) => console.log(err));
 
     (navigator.geolocation) ? this.setState({geolocationAllowed : true}) : this.setState({geolocationAllowed : false});
   }
@@ -107,7 +110,7 @@ class Profile extends Component {
                   <Sneakers itemInCloset = {this.state.closet.shoes} />
                   <RainBoots itemInCloset = {this.state.closet.shoes} />
 
-                  <Shirt itemInCloset = {this.state.closet.tops} />
+                  <Shirt itemInCloset = {this.state.closet.tops === "Shirt"} />
                   <TankTop itemInCloset = {this.state.closet.tops} />
                   <LongSleeve itemInCloset = {this.state.closet.tops} />
                   

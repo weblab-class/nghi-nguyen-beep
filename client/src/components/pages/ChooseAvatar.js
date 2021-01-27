@@ -19,7 +19,7 @@ class ChooseAvatar extends Component {
 
 
 componentDidMount() {
-    get("/api/accessDenied", {isLoggedOut: this.props.isLoggedOut}).then((res) => {
+    get("/api/accessDenied", {userId: this.props.userId}).then((res) => {
         if (res.msg === "denied") {
           navigate("/");
         }
