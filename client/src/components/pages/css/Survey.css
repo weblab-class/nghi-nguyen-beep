@@ -6,6 +6,7 @@
     justify-content:space-evenly;
 }
 
+
 .Survey-top{
     padding-top: 2%;
     flex-direction: row;
@@ -14,35 +15,35 @@
     justify-content:space-evenly;
 }
 .Survey-bottom{
-    padding-top: 2%;
+    /* padding-top: 2%; */
     flex-direction: row;
     display: flex;
     align-items: center;
     justify-content:space-evenly;
 }
 .Survey-shoes{
-    padding-top: 2%;
+    /* padding-top: 2%; */
     flex-direction: row;
     display: flex;
     align-items: center;
     justify-content:space-evenly;
 }
 .Survey-outerwear{
-    padding-top: 2%;
+    /* padding-top: 2%; */
     flex-direction: row;
     display: flex;
     align-items: center;
     justify-content:space-evenly;
 }
 .Survey-accessory{
-    padding-top: 2%;
+    /* padding-top: 2%; */
     flex-direction: row;
     display: flex;
     align-items: center;
     justify-content:space-evenly;
 }
 .Survey-submit{
-    padding-top: 2%;
+    padding-top: 1%;
     flex-direction: row;
     display: flex;
     align-items: center;

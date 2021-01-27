@@ -1,3 +1,7 @@
+.buttonLabel{
+  color: white;
+  letter-spacing: 1.5px;
+}
 #clothing {
     height: auto; 
     width: auto; 
@@ -23,7 +27,10 @@ input[type="checkbox"][id*="cb"] {
 }
 
 label {
-  border: 1px solid #fff;
+  border: 1px solid rgb(88, 140, 199);
+  background-color: rgb(88, 140, 199);
+  border-radius: 10%;
+  opacity: 90%;
   padding: 10px;
   display: block;
   position: relative;
@@ -38,8 +45,8 @@ label {
 }
 
 label::before {
-  background-color: white;
-  color: white;
+  background-color: rgb(104, 177, 110);
+  color: rgb(245, 245, 245);
   content: " ";
   display: block;
   border-radius: 50%;
@@ -56,38 +63,39 @@ label::before {
 }
 
 label img {
-  height: 100px;
-  width: 100px;
+  height: 50%;
+  width: 50%;
   transition-duration: 0.2s;
   transform-origin: 50% 50%;
 }
 
 :checked+label {
-  border-color: #ddd;
+  /* border-color: rgb(20, 84, 136); */
+  border: 2px solid rgb(20, 84, 136);
 }
-
+/* 
 :checked+label::before {
   content: "✓";
-  background-color: grey;
+  background-color: rgb(56, 107, 59);
   transform: scale(1);
 }
 
 :checked+label img {
-  transform: scale(0.9);
-  box-shadow: 0 0 5px #333;
-  z-index: -1;
-}
+  transform: scale(0.5); */
+  /* box-shadow: 0 5 5px rgb(56, 107, 59); */
+  /* z-index: -1;
+} */
 .outNum {
-  margin: 2px;
+  margin: 0px;
 }
 
 .slider {
   -webkit-appearance: none;
   width: 80%;
-  height: 10%;
-  background: #d3d3d3;
+  height: 5%;
+  background: #ffffff;
   outline: none;
-  opacity: 0.7;
+  opacity: 0.5;
   -webkit-transition: .2s;
   transition: opacity .2s;
 }
@@ -99,9 +107,9 @@ label img {
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 15px;
+  width: 10px;
   border-radius: 50%;
-  height: 15px;
+  height: 10px;
   background: #3a6ea8;
   cursor: pointer;
 }

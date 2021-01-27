@@ -50,7 +50,7 @@ render() {
             {this.state.selected &&
                 <>
                     <input type="range" className="slider" value={this.state.frequency} min="1" max="100" onChange={(e) => this.sliderChange(e)}/>
-                    <h2 className = "outNum">{this.state.frequency}</h2>
+                    <p className = "outNum">{this.state.frequency}</p>
                 </>
             }
             </div>
