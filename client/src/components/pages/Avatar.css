@@ -3,29 +3,41 @@
   /* make it responsive */
   display: flex;
   max-width: 100vw;
-  max-height: 100vh;
-  flex-direction:row;
+  max-height: 90vh;
+  flex-direction:column;
   justify-content: space-evenly;
   align-items: center;
   width: auto;
   height: auto;
-  padding-top: 12%;
+  padding-top: 5%;
+  /* margin: 5%; */
+}
+
+.ChooseAvatar-Avatar{
+  padding-top: 2%;
+  display: flex;
+  max-width: 60vw;
+  max-height: 60vh;
+  flex-direction:row;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 #Bear {
   height: auto; 
   width: auto; 
-  max-width: 45vw; 
-  max-height: 45vh;
+  max-width: 47vw; 
+  max-height: 47vh;
   transition: 0.2s;
   border-radius: 10%;
+
 }
 
 #GrayCat {
   height: auto; 
   width: auto; 
-  max-width: 45vw; 
-  max-height: 45vh;
+  max-width: 47vw; 
+  max-height: 47vh;
   transition: 0.2s;
   border-radius: 10%;
 }
@@ -33,8 +45,8 @@
 #CalicoCat {
   height: auto; 
   width: auto; 
-  max-width: 45vw; 
-  max-height: 45vh;
+  max-width: 47vw; 
+  max-height: 47vh;
   transition: 0.2s;
   border-radius: 10%;
 }
@@ -43,16 +55,22 @@
 #Bear:hover {
   background-color: #477e4a;
   color: white;
+  animation: shakeImg 0.5s;
+  animation-iteration-count: 1;
 }
 
 #CalicoCat:hover {
   background-color: #477e4a;
   color: white;
+  animation: shakeImg 0.5s;
+  animation-iteration-count: 1;
 }
 
 #GrayCat:hover {
   background-color: #477e4a;
   color: white;
+  animation: shakeImg 0.5s;
+  animation-iteration-count: 1;
 }
 
 #Bear:focus {
@@ -68,6 +86,16 @@
 #GrayCat:focus {
   background-color: #3a663d;
   color: white;
+}
+
+@keyframes shakeImg {
+  0% { transform: translate(1px, 1px) rotate(5deg); }
+  20% { transform: translate(-2px, 0px) rotate(10deg); }
+  30% { transform: translate(2px, 2px) rotate(-10deg); }
+  50% { transform: translate(-1px, 2px) rotate(-20deg); }
+  70% { transform: translate(2px, 1px) rotate(-25deg); }
+  90% { transform: translate(1px, 2px) rotate(10deg); }
+  100% { transform: translate(1px, -2px) rotate(-10deg); }
 }
 
 .Profile-next {
@@ -98,8 +126,4 @@
 
 #next:hover {background-color: #3e8e41}
 
-/* #next:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-} */
+

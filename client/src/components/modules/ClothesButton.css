@@ -69,10 +69,10 @@ label img {
   transform-origin: 50% 50%;
 }
 
-:checked+label {
+/* :checked+label { */
   /* border-color: rgb(20, 84, 136); */
-  border: 2px solid rgb(20, 84, 136);
-}
+  /* border: 2px solid rgb(20, 84, 136); */
+/* } */
 /* 
 :checked+label::before {
   content: "✓";

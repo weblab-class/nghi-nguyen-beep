@@ -39,8 +39,8 @@ render() {
             <>
             <div className = "Profile-avatar">
 
-            {this.state.avatarSelected ? ( <h2> {this.state.avatarSelected} selected </h2>) : (<h2> Select an avatar </h2>)}
-                
+            <div>{this.state.avatarSelected ? ( <h1> {this.state.avatarSelected} selected </h1>) : (<h2> Select an avatar </h2>)}</div>
+               <div className= "ChooseAvatar-Avatar">
                 <div id= "Bear" onClick={() => this.avatarPressed("Bear")}>
                     <Avatar avatar="Bear"/>
                 </div>
@@ -52,7 +52,7 @@ render() {
                 <div id= "CalicoCat" onClick={() => this.avatarPressed("Calico Cat")}>
                     <Avatar avatar="CalicoCat"/>
                 </div>
-
+            </div> 
             </div>
             
             {this.state.avatarSelected && (
