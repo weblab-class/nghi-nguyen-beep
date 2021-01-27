@@ -40,19 +40,17 @@ router.get("/accessDenied", (req, res) => {
   if (!req.user) {   
     res.send({msg: "denied"});
   }
-  res.send({msg: "approved"});
+  else {
+    res.send({msg: "approved"});
+  }
 });
 
 router.get("/user", (req, res) => {
-  if (req.user){
+  if (req.user) {
     User.findById(req.user._id).then((user) => {
       res.send(user);
-    }).catch(
-      function (err) {
-        res.send({});      }
-    );
+    });
   }
-
   else {
     res.send({});
   }
@@ -72,33 +70,49 @@ router.post("/initsocket", (req, res) => {
 
 router.post("/closet", (req, res) => {
   // console.log(req.body);
-  User.findByIdAndUpdate(req.body.userId,
-    {closet: {
-      tops: req.body.closet.top,
-      bottoms: req.body.closet.bottom,
-      shoes: req.body.closet.shoes,
-      outerwear: req.body.closet.outerwear,
-      accessories: req.body.closet.accessory,
+  if (req.body.userId) {
+    User.findByIdAndUpdate(req.body.userId,
+      {closet: {
+        tops: req.body.closet.top,
+        bottoms: req.body.closet.bottom,
+        shoes: req.body.closet.shoes,
+        outerwear: req.body.closet.outerwear,
+        accessories: req.body.closet.accessory,
+        }
       }
-    }
-  ).then((user) => {res.send(user)});
+    ).then((user) => {res.send(user)});
+  }
+  else {
+    res.send({msg: "user id not found for closet api"});
+  }
 });
 
 router.post("/avatar", (req, res) => {
+  if (req.body.userId) {
   User.findByIdAndUpdate(req.body.userId,
     {avatar: req.body.avatar.avatarSelected,}
   ).then((user) => {res.send(user)});
+}
+else{
+  res.send({msg: "user id not found for avatar api"});
+}
 });
 
 router.post("/changeUserStatus", (req, res) => {
-  // console.log(req.body);
+  if (req.body.userId) {
   User.findByIdAndUpdate(req.body.userId,
     {newuser: false
     }
   ).then((user) => {res.send(user)});
-});
+}
+else{
+  res.send({msg: "user id not found for change user api"});
+}
+}
+);
 
 router.get("/outfit", (req, res) => {
+  if (req.user._id) {
   User.findById(req.user._id).then((user) => {
     new Promise((resolve, reject) => {
       Closet.findById("600c8794efe38f2877ec0acc").then((dbCloset) => resolve(CreateOutfit(user.closet, dbCloset, req.query.temp)))})
@@ -108,6 +122,11 @@ router.get("/outfit", (req, res) => {
       console.log("error at api/outfit ", err );
       }
     );  
+  }
+
+  else {
+    res.send({msg: "user not signed on"});
+  }
 });
 
 

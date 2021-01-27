@@ -14,8 +14,7 @@ class LongSleeve extends GeneralItem {
     }
 
     render(){
-        let itemInCloset = this.props.itemInCloset;
-        if (itemInCloset === String(this.constructor.name)) {
+        if (this.props.itemInCloset) {
             return (<> <img src={longSleeve} id= {"GeneralItem-"+String(this.constructor.name)}/></>);
         }
         return (<></>);

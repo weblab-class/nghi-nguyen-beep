@@ -34,7 +34,6 @@ addItem = (obj) => {
 
   let b = {"clothing": obj.specific, "frequency": obj.frequency};
   let item = obj.item;
-  console.log(obj.specific, obj.selected);
   if (obj.selected) {
     if (item === "top") {
       let arr = [...this.state.top];

@@ -7,15 +7,11 @@ import "./GeneralItem.css";
 class Parka extends GeneralItem {
     constructor(props) {
         super(props);
-        this.state = {
-            highTemp: 40,
-            lowTemp: -50,
-        };
+        this.state = {};
     }
 
     render(){
-        let itemInCloset = this.props.itemInCloset;
-        if (itemInCloset === String(this.constructor.name)) {
+        if (this.props.itemInCloset) {
             return (<> <img src={parka} id= {"GeneralItem-"+String(this.constructor.name)}/></>);
         }
         return (<></>);

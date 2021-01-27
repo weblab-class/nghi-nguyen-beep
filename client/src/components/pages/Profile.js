@@ -54,10 +54,7 @@ class Profile extends Component {
       if (res.msg === "denied") {
         navigate("/");
       }
-    }).then(
-      post("/api/changeUserStatus", {userId: this.props.userId})
-      ).catch( (err) => console.log(err));
-
+    }).catch( (err) => console.log(err));
     (navigator.geolocation) ? this.setState({geolocationAllowed : true}) : this.setState({geolocationAllowed : false});
   }
 
@@ -98,29 +95,29 @@ class Profile extends Component {
 
                   <GeneralItem temp = {this.state.temp}/>
 
-                  <Umbrella itemInCloset = {this.state.closet.accessories} />
-                  <Sunglasses itemInCloset = {this.state.closet.accessories} />
-                  <Mittens itemInCloset = {this.state.closet.accessories} />
-                  <Hat itemInCloset = {this.state.closet.accessories} />
+                  <Umbrella itemInCloset = {this.state.closet.accessories === "Umbrella"} />
+                  <Sunglasses itemInCloset = {this.state.closet.accessories === "Sunglasses"} />
+                  <Mittens itemInCloset = {this.state.closet.accessories === "Mittens"} />
+                  <Hat itemInCloset = {this.state.closet.accessories === "Hat"} />
 
-                  <Jeans itemInCloset = {this.state.closet.bottoms} />
-                  <Sweatpants itemInCloset = {this.state.closet.bottoms} />
-                  <Shorts itemInCloset = {this.state.closet.bottoms} />
+                  <Jeans itemInCloset = {this.state.closet.bottoms === "Jeans"} />
+                  <Sweatpants itemInCloset = {this.state.closet.bottoms === "Sweatpants"} />
+                  <Shorts itemInCloset = {this.state.closet.bottoms === "Shorts"} />
 
-                  <Sneakers itemInCloset = {this.state.closet.shoes} />
-                  <RainBoots itemInCloset = {this.state.closet.shoes} />
+                  <Sneakers itemInCloset = {this.state.closet.shoes === "Sneakers"} />
+                  <RainBoots itemInCloset = {this.state.closet.shoes === "RainBoots"} />
 
                   <Shirt itemInCloset = {this.state.closet.tops === "Shirt"} />
-                  <TankTop itemInCloset = {this.state.closet.tops} />
-                  <LongSleeve itemInCloset = {this.state.closet.tops} />
+                  <TankTop itemInCloset = {this.state.closet.tops === "TankTop"} />
+                  <LongSleeve itemInCloset = {this.state.closet.tops === "LongSleeve"} />
                   
-                  <Sweater itemInCloset = {this.state.closet.outerwear}/>
-                  <Cardigan itemInCloset = {this.state.closet.outerwear} />
-                  <Crewneck itemInCloset = {this.state.closet.outerwear} />
-                  <RainJacket itemInCloset = {this.state.closet.outerwear} />
-                  <Parka itemInCloset = {this.state.closet.outerwear}/>
+                  <Sweater itemInCloset = {this.state.closet.outerwear === "Sweater"}/>
+                  <Cardigan itemInCloset = {this.state.closet.outerwear === "Cardigan"} />
+                  <Crewneck itemInCloset = {this.state.closet.outerwear === "Crewneck"} />
+                  <RainJacket itemInCloset = {this.state.closet.outerwear === "RainJacket"} />
+                  <Parka itemInCloset = {this.state.closet.outerwear === "Parka"}/>
                 </div>
-                <WeatherSubmitButton onChange = {this.getTemp} userId = {this.props.userId} geolocationAllowed = {this.state.geolocationAllowed}/>
+                {/* <WeatherSubmitButton onChange = {this.getTemp} userId = {this.props.userId} geolocationAllowed = {this.state.geolocationAllowed}/> */}
             </div>
           </>
         );

@@ -7,16 +7,12 @@ import "./GeneralItem.css";
 class TankTop extends GeneralItem {
     constructor(props) {
         super(props);
-        this.state = {
-            highTemp: 120,
-            lowTemp: 65,
-        };
+        this.state = {};
     }
 
     render(){
-        let itemInCloset = this.props.itemInCloset;
-        if (itemInCloset === String(this.constructor.name)) {
-            return (<> <img src={TankTop} id= {"GeneralItem-"+String(this.constructor.name)}/></>);
+        if (this.props.itemInCloset) {
+            return (<> <img src={tankTop} id= {"GeneralItem-"+String(this.constructor.name)}/></>);
         }
         return (<></>);
     }

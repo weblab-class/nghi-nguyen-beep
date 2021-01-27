@@ -16,11 +16,11 @@ componentDidMount() {
 
 
 saveCloset = (body) => {
-    console.log("closet body", body, typeof(body), body.closet.top, typeof(body.closet.top));
-    post("/api/closet", body).then(navigate("/profile/"+String(this.props.userId)));
-
-
-  };
+    // console.log("closet body", body, typeof(body), body.closet.top, typeof(body.closet.top));
+    post("/api/closet", body)
+    .then(() => post("/api/changeUserStatus", {userId: this.props.userId}))
+    .then(() => navigate("/profile/"+String(this.props.userId)));
+    };
 
 render() {
     

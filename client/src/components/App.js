@@ -23,22 +23,14 @@ class App extends Component {
       isLoggedOut: null,
       userName: null,
       newUser: null,
-      introCompleted: null
-
     };
   }
 
   componentDidMount() {
     get("/api/whoami").then((user) => {
       if (user._id) {
-        // they are registed in the database, and currently logged in.
-        this.setState({ userId: user._id, newUser: false, userName: user.name });
+        this.setState({ userId: user._id, userName: user.name, newUser: user.newuser});
       }
-
-      else {
-        this.setState({ newUser: true });
-      }
-    
     });
   }
 
@@ -46,19 +38,17 @@ class App extends Component {
     console.log(`Logged in as ${res.profileObj.name}`);
     const userToken = res.tokenObj.id_token;
       post("/api/login", { token: userToken }).then((user) => {
-        this.setState({ isLoggedOut: false, userId: user._id, userName: user.name}, () => navigate("/"));
+        this.setState({ isLoggedOut: false, userId: user._id, userName: user.name, newUser: user.newuser});
         post("/api/initsocket", { socketid: socket.id });
       });
   };
 
   handleLogout = () => {
-    this.setState({ userId: null, userName: null, isLoggedOut: true, newUser: false});
+    this.setState({ userId: null, userName: null, isLoggedOut: true, newUser: null});
     post("/api/logout").then(() => navigate("/"));
   };
 
   render() {
-    console.log("app", this.state);
-
       return (
         <>
         <div className="mainPage" >
@@ -69,9 +59,9 @@ class App extends Component {
           userName={this.state.userName}
         />
           <Router>
-            <General path="/" isLoggedOut= {this.state.isLoggedOut} userName= {this.state.userName} userId = {this.state.userId}/>
+            <General path="/" isLoggedOut= {this.state.isLoggedOut} newUser = {this.state.newUser} userName= {this.state.userName} userId = {this.state.userId}/>
             <About path="/about"/>
-            <Profile path="/profile/:userId" isLoggedOut= {this.state.isLoggedOut} userName= {this.state.userName} userId = {this.state.userId}/>
+            <Profile path="/profile/:userId" isLoggedOut= {this.state.isLoggedOut} newUser = {this.state.newUser} userName= {this.state.userName} userId = {this.state.userId}/>
             <SignedOut path="/goodbye" />
             <ChooseAvatar path="/avatar" isLoggedOut= {this.state.isLoggedOut} newUser = {this.state.newUser} userId = {this.state.userId}/>
             <Survey path="/survey" isLoggedOut= {this.state.isLoggedOut} newUser = {this.state.newUser} userId = {this.state.userId}/>

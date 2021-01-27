@@ -7,15 +7,11 @@ import "./GeneralItem.css";
 class Shorts extends GeneralItem {
     constructor(props) {
         super(props);
-        this.state = {
-            highTemp: 100,
-            lowTemp: 60,
-        };
+        this.state = {};
     }
 
     render(){
-        let itemInCloset = this.props.itemInCloset;
-        if (itemInCloset === String(this.constructor.name)) {
+        if (this.props.itemInCloset) {
             return (<> <img src={shorts} id= {"GeneralItem-"+String(this.constructor.name)}/></>);
         }
         return (<></>);
