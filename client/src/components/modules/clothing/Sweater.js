@@ -12,7 +12,7 @@ class Sweater extends GeneralItem {
 
     render(){
         if (this.props.itemInCloset) {
-            return (<> <img src={shirt} id= {"GeneralItem-"+String(this.constructor.name)}/></>);
+            return (<> <img src={sweater} id= {"GeneralItem-"+String(this.constructor.name)}/></>);
         }
         return (<></>);
     }

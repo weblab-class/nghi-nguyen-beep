@@ -12,7 +12,7 @@ class Sunglasses extends GeneralItem {
 
     render(){
         if (this.props.itemInCloset) {
-            return (<> <img src={shirt} id= {"GeneralItem-"+String(this.constructor.name)}/></>);
+            return (<> <img src={sunglasses} id= {"GeneralItem-"+String(this.constructor.name)}/></>);
         }
         return (<></>);
     }
