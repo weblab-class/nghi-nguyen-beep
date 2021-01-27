@@ -1,53 +1,28 @@
-# Project Skeleton
+# weatherly sources and notes
 
-## What we provide
+## Resources used
 
-- Google Auth (Skeleton.js & auth.js)
-  - Disclaimer: Auth isn't being taught until the second week.
-- Socket Infrastructure (client-socket.js & server-socket.js)
-  - Disclaimer: Socket isn't being taught until the second week.
-- User Model (auth.js & user.js)
+- https://openweathermap.org/api
+  - Weather API: Used in `WeatherSubmitButton.js` to get temperature of location
 
-## What you need to change
+- https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API
+  - React Geolocator library: Used in `WeatherSubmitButton.js` to request user's location
 
-- Change the font in utilities.css
-- Change the Frontend CLIENT_ID for Google Auth (Skeleton.js) (we'll talk about it at the end of week 2)
-- Change the Server CLIENT_ID for Google Auth (auth.js) (we'll talk about it at the end of week 2)
-- Change the Database SRV for Atlas (server.js)
-- Change the Database Name for MongoDB (server.js)
-- Add a favicon to your website at the path client/dist/favicon.ico
-- Update website title in client/dist/index.html
-- Update this README file ;)
-- Update the package.json file with your app name :) (line 2)
+- https://animate.style/
+  - Quick css animation library: Used in `General.js` to increase user interaction with site
 
-## Socket stuff
-Note: we'll be getting to this in lecture in week 2, so don't worry if you don't know it yet
+- https://www.mongodb.com/
+  - Used to store user data
 
-- If you're not using realtime updating or don't need server->client communication, you can remove socket entirely! (server-socket.js, client-socket.js, and anything that imports them)
-- If you are using socket, consider what you want to do with the FIXME in server-socket.js
+- https://developers.google.com/identity/protocols/oauth2
+  - Used in `auth.js` to authenticate users for personal experience while maintaining security
+
+- https://procreate.art/
+  - All images used were created by my and my sister on this awesome app :o
+
+- https://stackoverflow.com/
+  - A lot of debugging help came from here. Used to further understand React and javascript syntax
 
 
-## How to integrate into your own project
 
-On GitHub download this repository as a zip file, then extract the files into your own repository.
-Warning: make sure you copy the hidden files too: .babelrc, .gitignore, .npmrc, and .prettierrc
-
-## don't touch
-
-the following files students do not need to edit. feel free to read them if you would like.
-
-```
-client/src/index.js
-client/src/utilities.js
-client/src/client-socket.js
-server/validator.js
-server/server-socket.js
-.babelrc
-.npmrc
-.prettierrc
-package-lock.json
-webpack.config.js
-```
-
-## Good luck on your project :)
-# nghi-nguyen-beep
+### nghi-nguyen-beep
