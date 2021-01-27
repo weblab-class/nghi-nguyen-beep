@@ -39,8 +39,9 @@ class General extends Component {
                 
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>    
                     <div className = "General-main">
-                        <h2>Welcome</h2>
-                        <h2> {this.props.userName}</h2>
+                        <h2>Welcome {this.props.userName}</h2>
+                        {/* <h2> {this.props.userName}</h2> */}
+                        <p>If you're new, click the button below to get started!<br></br> Else, click on profile tab to get your outfit for the day!</p>
                         <img src={waving} id= "General-bear-gif"></img>
                         <button type="submit" onClick= {() => navigate("/avatar")}>Click here to get started!</button>
                     </div>
